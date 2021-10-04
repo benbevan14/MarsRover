@@ -7,17 +7,29 @@ using RestSharp;
 
 namespace MarsRover
 {
-    public class MarsRoverPhotosAPI
+    public class NasaApi
     {
         public string ApiKey { get; set; }
         public string BaseUrl { get; set; }
         public RestClient RestClient { get; set; }
 
-        public MarsRoverPhotosAPI()
+        public NasaApi()
         {
             ApiKey = ConfigurationManager.AppSettings["apiKey"];
-            BaseUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
+            BaseUrl = "https://api.nasa.gov/";
             RestClient = new RestClient(BaseUrl);
         }
+
+        public string GetApodUrl()
+        {
+            var request = new RestRequest("planetary/apod", Method.GET);
+            request.AddHeader("api_key", ApiKey);
+
+            var response = RestClient.Execute<ApodResponse>(request).Data;
+
+            return response.url;
+        }
+
+
     }
 }
