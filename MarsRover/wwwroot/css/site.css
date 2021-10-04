@@ -51,8 +51,7 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
+
 html {
   position: relative;
   min-height: 100%;
@@ -70,11 +69,7 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-
+/* rover image center */
 .banner .rover-item {
     position: relative;
     padding: 28.12% 35px;
@@ -124,4 +119,26 @@ img {
     text-transform: none;
     margin: 0;
     max-width: unset;
+}
+
+.banner .stretch-container {
+    position: static;
+    overflow: visible;
+}
+
+.objectfit .background-img .stretch-container img, .objectfit .background-img .stretch-container video {
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.background-img .stretch-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
 }

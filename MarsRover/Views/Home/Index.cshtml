@@ -1,21 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<div role="banner" class="background-img banner">
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
 <div class="rover-item">
-        <picture class="stretch-container">
-            <img alt="Mars Rover image" src="img/marsRover.jpg" sizes="(max-width: 370px) 370px,(max-width: 768px) 768px,(max-width: 992px) 992px,(max-width: 1200px) 1200px,(max-width: 1600px) 1600px,(max-width: 2400px) 2400px, 2400px">
-        </picture>
-</div>
-
-<div class="rover-flex-container banner-content">
-    <div class="rover-text">
-        <h1 class="rover-heading-text">Mars Rover Information</h1>
-        <h2 class="rover-subheading-text">Embark on a Journey of Discovery</h2>
+        <div rover="rover-video">
+            <picture class="stretch-container">
+                <img alt="Mars Rover image" src="img/marsRover.jpg">
+            </picture>
+        </div>
     </div>
-</div>
+
+    <div class="rover-flex-container banner-content">
+        <div class="rover-text">
+            <h1 class="rover-heading-text">Mars Rover Information</h1>
+            <h2 class="rover-subheading-text">Embark on a Journey of Discovery</h2>
+        </div>
+    </div>
+    </div>
