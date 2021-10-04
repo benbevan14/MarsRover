@@ -18,5 +18,13 @@ namespace MarsRover
 
             return MarsSolDate;
         }
+
+        public DateTime SolToEarthDate(int MarsSolDate)
+        {
+            int timeDifferenceInDays = (int)(MarsSolDate / DayConversion);
+            DateTime earthDate = new DateTime(1873, 12, 29).AddDays(timeDifferenceInDays);
+  
+            return earthDate;
+        }
     }
 }
