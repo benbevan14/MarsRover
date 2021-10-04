@@ -30,9 +30,9 @@ html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
@@ -51,8 +51,7 @@ button.accept-policy {
   line-height: inherit;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
+
 html {
   position: relative;
   min-height: 100%;
@@ -70,58 +69,42 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-img {
-    vertical-align: middle;
-    border-style: none;
-}
+/* rover image center */
 
-.banner .rover-item {
-    position: relative;
-    padding: 28.12% 35px;
-    overflow: hidden;
-    margin-left: -1px;
-    display: block;
-    max-height: 650px;
-}
-
-.rover-flex-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+.hero-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(marsRover.jpg);
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-height: 650px;
-}
-
-.banner .banner-content {
-    z-index: 1;
-}
-
-.rover-text {
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
-    padding: 20px;
+    padding-top: 250px;
+    padding-bottom: 250px;
+}
+
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
 }
 
-.rover-text .rover-heading-text {
-    font-weight: 900;
-    font-size: 4em;
+.hero-text button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 10px 25px;
+    color: black;
+    background-color: #ddd;
+    text-align: center;
+    cursor: pointer;
 }
 
-.rover-text .rover-subheading-text {
-    font-family: Poppins,sans-serif;
-    font-size: 1.875em;
-    padding: 20px;
-    text-transform: none;
-    margin: 0;
-    max-width: unset;
+.hero-text button:hover {
+    background-color: #555;
+    color: white;
 }
