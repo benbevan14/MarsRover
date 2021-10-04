@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using MarsRover.API.Response;
 using RestSharp;
 
 namespace MarsRover
@@ -41,5 +42,27 @@ namespace MarsRover
             return response.url;
         }
 
+        public IEnumerable<string> GetCuriosityPhotoUrls(DateTime earthDate)
+        {
+            var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
+            request.AddHeader("api_key", ApiKey);
+            request.AddHeader("date", earthDate.ToString("yyyy-mm-dd"));
+
+            var response = RestClient.Execute<PhotoResponse>(request).Data;
+
+            return response.Photos.Select(p => p.ImgSrc);
+        }
+
+        public IEnumerable<string> GetCuriosityCameraPhotoUrls(DateTime earthDate, string camera)
+        {
+            var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
+            request.AddHeader("api_key", ApiKey);
+            request.AddHeader("date", earthDate.ToString("yyyy-mm-dd"));
+            request.AddHeader("camera", camera);
+
+            var response = RestClient.Execute<PhotoResponse>(request).Data;
+
+            return response.Photos.Select(p => p.ImgSrc);
+        }
     }
 }
