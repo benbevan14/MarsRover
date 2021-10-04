@@ -20,7 +20,7 @@ namespace MarsRover
             RestClient = new RestClient(BaseUrl);
         }
 
-        public string GetApodUrl()
+        public string GetApodUrlToday()
         {
             var request = new RestRequest("planetary/apod", Method.GET);
             request.AddHeader("api_key", ApiKey);
@@ -30,6 +30,16 @@ namespace MarsRover
             return response.url;
         }
 
+        public string GetApodUrlDate(DateTime date)
+        {
+            var request = new RestRequest("planetary/apod", Method.GET);
+            request.AddHeader("api_key", ApiKey);
+            request.AddHeader("date", date.ToString("yyyy-mm-dd"));
+
+            var response = RestClient.Execute<ApodResponse>(request).Data;
+
+            return response.url;
+        }
 
     }
 }
