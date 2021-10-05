@@ -35,6 +35,10 @@ namespace MarsRover.Controllers
         {
             return View();
         }
+        public IActionResult Apod()
+        {
+            return View();
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
