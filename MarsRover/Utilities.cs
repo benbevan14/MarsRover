@@ -27,7 +27,7 @@ namespace MarsRover
             double jdUt = GetJulianDateUt(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             double jdTt = GetJulianDateTt(jdUt);
             double j2000 = GetJ2000(jdTt);
-            return (j2000 - 4.5) / 1.027491252 + 44796.0 - 0.00096;
+            return Math.Truncate((j2000 - 4.5) / 1.027491252 + 44796.0 - 0.00096);
         }
     }
 }
