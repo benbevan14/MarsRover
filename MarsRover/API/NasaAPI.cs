@@ -34,7 +34,7 @@ namespace MarsRover
         {
             var request = new RestRequest("planetary/apod", Method.GET);
             request.AddParameter("api_key", ApiKey);
-            request.AddParameter("date", date.ToString("yyyy-mm-dd"));
+            request.AddParameter("earth_date", date.ToString("yyyy-mm-dd"));
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
 
@@ -45,18 +45,20 @@ namespace MarsRover
         {
             var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
             request.AddParameter("api_key", ApiKey);
-            request.AddParameter("date", earthDate.ToString("yyyy-mm-dd"));
+            string dateString = earthDate.Year + "-" + earthDate.Month + "-" + earthDate.Day;
+            request.AddParameter("earth_date", dateString);
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
 
-            return response.Photos.Select(p => p.ImgSrc);
+            return response.Photos != null ? response.Photos.Select(p => p.ImgSrc) : new List<string>();
         }
 
         public IEnumerable<string> GetCuriosityCameraPhotoUrls(DateTime earthDate, string camera)
         {
             var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
             request.AddParameter("api_key", ApiKey);
-            request.AddParameter("date", earthDate.ToString("yyyy-mm-dd"));
+            string dateString = earthDate.Year + "-" + earthDate.Month + "-" + earthDate.Day;
+            request.AddParameter("earth_date", dateString);
             request.AddParameter("camera", camera);
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
