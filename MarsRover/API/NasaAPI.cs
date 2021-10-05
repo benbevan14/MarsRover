@@ -24,7 +24,7 @@ namespace MarsRover
         public string GetApodUrlToday()
         {
             var request = new RestRequest("planetary/apod", Method.GET);
-            request.AddHeader("api_key", ApiKey);
+            request.AddParameter("api_key", ApiKey);
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
 
@@ -34,8 +34,8 @@ namespace MarsRover
         public string GetApodUrlDate(DateTime date)
         {
             var request = new RestRequest("planetary/apod", Method.GET);
-            request.AddHeader("api_key", ApiKey);
-            request.AddHeader("date", date.ToString("yyyy-mm-dd"));
+            request.AddParameter("api_key", ApiKey);
+            request.AddParameter("date", date.ToString("yyyy-mm-dd"));
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
 
@@ -45,8 +45,8 @@ namespace MarsRover
         public IEnumerable<string> GetCuriosityPhotoUrls(DateTime earthDate)
         {
             var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
-            request.AddHeader("api_key", ApiKey);
-            request.AddHeader("date", earthDate.ToString("yyyy-mm-dd"));
+            request.AddParameter("api_key", ApiKey);
+            request.AddParameter("date", earthDate.ToString("yyyy-mm-dd"));
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
 
@@ -56,9 +56,9 @@ namespace MarsRover
         public IEnumerable<string> GetCuriosityCameraPhotoUrls(DateTime earthDate, string camera)
         {
             var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
-            request.AddHeader("api_key", ApiKey);
-            request.AddHeader("date", earthDate.ToString("yyyy-mm-dd"));
-            request.AddHeader("camera", camera);
+            request.AddParameter("api_key", ApiKey);
+            request.AddParameter("date", earthDate.ToString("yyyy-mm-dd"));
+            request.AddParameter("camera", camera);
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
 
