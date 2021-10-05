@@ -12,8 +12,9 @@ namespace MarsRover.Controllers
         public IActionResult Index()
         {
             NasaApi api = new NasaApi();
-            var test = api.GetApodUrlToday();
-            return View(api.GetApodUrlToday());
+            var url = api.GetApodUrlToday();
+            ViewBag.Url = url;
+            return View();
         }
     }
 }
