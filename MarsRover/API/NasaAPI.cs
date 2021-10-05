@@ -34,7 +34,8 @@ namespace MarsRover
         {
             var request = new RestRequest("planetary/apod", Method.GET);
             request.AddParameter("api_key", ApiKey);
-            request.AddParameter("earth_date", date.ToString("yyyy-mm-dd"));
+            string dateString = date.Year + "-" + date.Month + "-" + date.Day;
+            request.AddParameter("date", dateString);
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
 
