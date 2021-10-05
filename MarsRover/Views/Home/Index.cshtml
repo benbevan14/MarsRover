@@ -4,21 +4,56 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-
-
-<div class="container-fluid">
-<div class="container">
-    <div class="hero-image">
-        <div class="hero-text">
-            <h1 style="font-size: 50px">Mars Rover</h1>
-            <p>I am a mars rover</p>
-            <button>Get Date Time</button>
+<section>
+    <div class="row stretched" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://static01.nyt.com/images/2018/07/26/science/26TB-MARS-promo/26TB-MARS-promo-superJumbo.jpg)">
+        <div class="col-md-7" style="float:none;margin:auto;  ">
+            <h2 style="color: white">Mars Rover</h2>
+            <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://mars.nasa.gov/system/feature_items/images/6037_msl_banner.jpg)">
+                <div class="container">
+                    <h1 class="display-4">Welcome to the Future!</h1>
+                    <p class="lead">Get more information when it comes to space and the mars curiosity rover.</p>
+                    <hr class="my-4">
+                    <h5>Your time is @DateTime.Now</h5>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Refresh</a>
+                </div>
+                <!-- /.container   -->
+            </div>
         </div>
     </div>
-</div>
-</div>
+</section>
 
-<div class="dateTimeGetter">
-    <h1>Your time is @DateTime.Now</h1>
-</div>
+
+<section>
+    <div class="row duoCards">
+
+        <div class="col-md-6">
+            <h2>Earth</h2>
+            <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://placeimg.com/1000/480/nature)">
+                <div class="container" style="color: white;">
+                    <h1 class="display-4">Earth Time</h1>
+                    <p class="lead">This is the Earth time</p>
+                    <hr class="my-4">
+                    <h5>Your time is @DateTime.Now</h5>
+                    <a class="btn btn-primary btn-lg" href="@DateTime.Now" role="button">Learn more</a>
+                </div>
+                <!-- /.container   -->
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <h2>Mars</h2>
+            <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://placeimg.com/1000/480/nature)">
+                <div class="container">
+                    <h1 class="display-4">Mars Time</h1>
+                    <p class="lead">This is the Mars time</p>
+                    <hr class="my-4">
+                    <h5>Mars time is @DateTime.Now</h5>
+                    <a class="btn btn-primary btn-lg" href="@DateTime.Now" role="button" >refresh</a>
+                </div>
+                <!-- /.container   -->
+            </div>
+        </div>
+    </div>
+  
+</section>
