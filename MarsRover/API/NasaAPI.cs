@@ -26,6 +26,13 @@ namespace MarsRover
             var request = new RestRequest("planetary/apod", Method.GET);
             request.AddParameter("api_key", ApiKey);
 
+            foreach (var p in request.Parameters)
+            {
+                Console.WriteLine(p.Name + ": " + p.Value);
+            }
+
+            Console.WriteLine(RestClient.Execute<ApodResponse>(request).Content);
+
             var response = RestClient.Execute<ApodResponse>(request).Data;
 
             return response.url;
