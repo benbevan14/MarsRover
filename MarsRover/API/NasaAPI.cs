@@ -65,19 +65,5 @@ namespace MarsRover
 
             return response.Photos.Select(p => p.ImgSrc);
         }
-
-        // Get a selection of photos from a random day since curiosity landed on mars
-        public IEnumerable<string> GetRandomPhotoSelection(int number)
-        {
-            Random r = new Random();
-            // Curiosity landed on the 6th of August 2012
-            DateTime curiosityLanding = new DateTime(2012, 8, 6);
-            // Add a random number of days to give a date between the landing and today
-            int range = (DateTime.Today - curiosityLanding).Days;
-            DateTime randomDate = curiosityLanding.AddDays(r.Next(range));
-
-            // Return a number sized list of photos
-            return GetCuriosityPhotoUrls(randomDate).OrderBy(x => r.Next()).Take(number);
-        }
     }
 }
