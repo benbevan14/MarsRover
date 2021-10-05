@@ -7,11 +7,11 @@ namespace MarsRover
 {
     public class Utilities
     {
-        public static int MarsDayInSeconds = 88775;
-        public static int EarthDayInSeconds = 86400;
-        public decimal DayConversion = MarsDayInSeconds / EarthDayInSeconds;
+        public static decimal MarsDayInSeconds = 88775;
+        public static decimal EarthDayInSeconds = 86400;
+        public static decimal DayConversion = MarsDayInSeconds / EarthDayInSeconds;
 
-        public int EarthDateToSol(DateTime earthDate)
+        public static int EarthDateToSol(DateTime earthDate)
         {
             int timeDifferenceInDays = (int)earthDate.Subtract(new DateTime(1873, 12, 29)).TotalDays;
             int MarsSolDate = (int)(timeDifferenceInDays * DayConversion);
@@ -23,7 +23,7 @@ namespace MarsRover
         {
             int timeDifferenceInDays = (int)(MarsSolDate / DayConversion);
             DateTime earthDate = new DateTime(1873, 12, 29).AddDays(timeDifferenceInDays);
-  
+
             return earthDate;
         }
     }
