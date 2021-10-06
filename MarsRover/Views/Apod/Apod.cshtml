@@ -1,12 +1,24 @@
 ﻿@{
     using (Html.BeginForm("Apod", "Apod", FormMethod.Post))
     {
-        <div>
+
+        <div class="searchbar">
             @Html.TextBox("Date", "", new { placeholder = "Enter the Date to Search" })
+            <button>Search</button>
+
         </div>
-        <input type="submit" value="Submit" />
+
+
+
+
+
     }
 
 }
+<img class="image-stretched" src="@ViewBag.Url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+   
 
-<img src="@ViewBag.Url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+
+@{
+    /*<img src="@ViewBag.Url" alt="Astronomy Picture of the Day isn't available for this date. '" />*/
+}
