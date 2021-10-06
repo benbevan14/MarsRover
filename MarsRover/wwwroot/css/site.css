@@ -117,7 +117,18 @@ body {
     background-size: cover;
 }
 
-img {
+.carousel-item {
+    height: 750px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    align-content: center
+}
+
+/*img {
     max-width: 100%;
     width: auto;
     height: auto;
@@ -133,7 +144,7 @@ img {
     min-width: 100%;
     height: 500px;
     max-width: none;
-}
+}*/
 
 .stretched {
     left: 0;
