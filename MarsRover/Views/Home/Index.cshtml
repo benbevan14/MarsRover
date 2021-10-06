@@ -14,8 +14,6 @@
                     <h1 class="display-4">Welcome to the Future!</h1>
                     <p class="lead">Get more information when it comes to space and the mars curiosity rover.</p>
                     <hr class="my-4">
-                    <h5>Your time is @DateTime.Now</h5>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Refresh</a>
                 </div>
                 <!-- /.container   -->
             </div>
@@ -29,13 +27,13 @@
 
         <div class="col-md-6">
             <h2>Earth</h2>
-            <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://placeimg.com/1000/480/nature)">
+            <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://mars.nasa.gov/layout/mars2020/images/PIA23764-RoverNamePlateonMars-web.jpg)">
                 <div class="container" style="color: white;">
                     <h1 class="display-4">Earth Time</h1>
                     <p class="lead">This is the Earth time</p>
                     <hr class="my-4">
                     <h5>Your time is @DateTime.Now</h5>
-                    <a class="btn btn-primary btn-lg" href="@DateTime.Now" role="button">Learn more</a>
+                    <a class="btn btn-primary btn-lg" href="@DateTime.Now" role="button">Refresh</a>
                 </div>
                 <!-- /.container   -->
             </div>
@@ -44,15 +42,16 @@
 
         <div class="col-md-6">
             <h2>Mars</h2>
-            <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://placeimg.com/1000/480/nature)">
+            <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg)">
                 <div class="container">
                     <h1 class="display-4">Mars Time</h1>
                     <p class="lead">This is the Mars time</p>
                     <hr class="my-4">
                     <h5>Mars time is @Utilities.GetMarsSolDate() Sols</h5>
-                    <a class="btn btn-primary btn-lg" href="#" role="button" >refresh</a>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Refresh</a>
                 </div>
                 <!-- /.container   -->
+                <img src="~/img/Rovs.jpg" />
             </div>
         </div>
     </div>
