@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 @using MarsRover;
@@ -49,6 +47,31 @@
                     <hr class="my-4">
                     <h5>Mars time is @Utilities.GetMarsSolDate() Sols</h5>
                     <a class="btn btn-primary btn-lg" href="#" role="button">Refresh</a>
+                </div>
+                <!-- /.container   -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Curiosity Rover</h2>
+            <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://ichef.bbci.co.uk/news/976/cpsprodpb/15B2C/production/_116367888_21929_pia22486-web.jpg) ">
+                <div class="container" style="color: white;">
+                    <h1 class="display-4">Sols for Rover</h1>
+                    <p class="lead">This is the time Curiosity has been on mars.</p>
+                    <hr class="my-4">
+                    <h5>Your time is @Utilities.GetCuriositySols()</h5>
+                    <a class="btn btn-primary btn-lg" href="@DateTime.Now" role="button">Refresh</a>
+                </div>
+                <!-- /.container   -->
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Twitter</h2>
+            <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://pbs.twimg.com/media/E8WwBVqWEAEtb5d.jpg) ">
+                <div class="container" style="color: white;">
+                    <a class="twitter-timeline" data-width="528px" data-height="229px" data-theme="light" href="https://twitter.com/MarsCuriosity?ref_src=twsrc%5Etfw%22%3ETweets"> by MarsCuriosity</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
                 <!-- /.container   -->
             </div>
