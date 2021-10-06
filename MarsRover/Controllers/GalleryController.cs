@@ -13,7 +13,5 @@ namespace MarsRover.Controllers
         {
             return View();
         }
-
-       
     }
 }
