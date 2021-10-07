@@ -11,7 +11,19 @@ namespace MarsRover.Controllers
     {
         public IActionResult Gallery()
         {
-            return View();
+            NasaApi api = new NasaApi();
+            var apod = api.GetApodResponseToday();
+            return View(apod);
+           
+        }
+
+        [HttpPost]
+        public IActionResult Gallery(DateViewModel dateSearched)
+        {
+            NasaApi api = new NasaApi();
+            var apod = api.GetApodResponseDate(dateSearched.Date);
+
+            return View(apod);
         }
     }
 }

@@ -1,6 +1,28 @@
-﻿
-<!-- Page Content -->
-<div class="container">
+﻿<!-- Google Roboto Fonts -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400|Roboto+Condensed:400|Fjalla+One:400'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
+@model ApodResponse
+
+<h2>Astronomy Picture of the Day</h2>
+
+<section>
+    <div class="stretched" style="background-color: #000000; color: #FFFFFF; padding: 20px;">
+        <button id="calendarButton">
+            Calendar
+        </button>
+        @{
+                using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "dateForm", @class = "hidden"}))
+                {
+                    <div class="searchbar">
+                        @Html.TextBox("Date", "", new {type = "date", id = "dateInput" })
+                    </div>
+                }
+            }
+        <img class="gallery-image" src="@Model.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+
+<h1>Gallery</h1>
 
     <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Gallery</h1>
 

@@ -1,5 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var form = document.getElementById("dateForm")
+var input = document.getElementById("dateInput")
+var calendarButton = document.getElementById("calendarButton")
+
+calendarButton.addEventListener("click", function () {
+    form.classList.remove("hidden");
+    calendarButton.classList.add("hidden")
+})
+
+input.addEventListener("change", function () {
+    form.submit();
+    form.classList.add("hidden")
+    calendarButton.classList.remove("hidden")
+})
 
 // Write your JavaScript code.
 
