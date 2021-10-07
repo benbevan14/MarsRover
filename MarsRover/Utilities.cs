@@ -27,13 +27,13 @@ namespace MarsRover
             double jdUt = GetJulianDateUt(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             double jdTt = GetJulianDateTt(jdUt);
             double j2000 = GetJ2000(jdTt);
-            return (j2000 - 4.5) / 1.027491252 + 44796.0 - 0.00096;
+            return Math.Truncate((j2000 - 4.5) / 1.027491252 + 44796.0 - 0.00096);
         }
 
         public static double GetRoverSols(DateTime landingDate)
         {
             TimeSpan ts = DateTime.UtcNow - landingDate;
-            return ts.TotalSeconds / 88775.244147;
+            return Math.Truncate( ts.TotalSeconds / 88775.244147);
         }
 
         public static double GetCuriositySols()
@@ -60,7 +60,5 @@ namespace MarsRover
         {
             return GetRoverSols(new DateTime(2021, 2, 18, 20, 55, 0));
         }
-
-
     }
 }
