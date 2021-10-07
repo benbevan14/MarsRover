@@ -148,8 +148,12 @@ body {
 .stretched {
     left: 0;
     /*position: absolute;*/
-    padding: 0;
+    padding: 225px;
     margin: 0;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .mb-3, .my-3 {
@@ -182,4 +186,22 @@ body {
 
 .img-thumbnail:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.container {
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.mt-4, .my-4 {
+    margin-top: 1.5rem !important;
+    background: rgba(255, 255, 255, 0.15);
+    width: 75%;
+}
+
+.jumbotron {
+    padding: 8rem 4rem;
 }
