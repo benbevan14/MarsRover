@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ApodResponse
+
+@{
     using (Html.BeginForm("Apod", "Apod", FormMethod.Post))
     {
 
@@ -15,7 +17,7 @@
     }
 
 }
-<img class="image-stretched" src="@ViewBag.Url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+<img class="image-stretched" src="@Model.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
    
 
 
