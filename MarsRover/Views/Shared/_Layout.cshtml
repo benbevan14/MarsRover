@@ -9,36 +9,17 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MarsRover</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="Gallery">Gallery</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Apod" asp-action="Apod">Picture of the Day</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Information">Information</a>
-                        </li>
+        <div class="container-fluid">
+            <nav class="navbar navbar-inverse">
+                    <ul class="nav navbar-nav">
+                        <div class="logo-image">
+                            <img src="~/img/SurrMooWhiteOnBlackLogo.png" class="img-fluid">
+                        </div>
+
+                        <li><a id="len1" class="hoverable nav-link" href="#">Home</a></li>
+                        <li><a id="len2" class="hoverable nav-link" href="#">About</a></li>
+                        <li><a id="len3" class="hoverable nav-link" href="#">Portfolio</a></li>
+                        <li><a id="len4" class="hoverable nav-link" href="#">Contact</a></li>
                     </ul>
                 
             </nav>
