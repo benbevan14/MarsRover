@@ -1,0 +1,51 @@
+﻿<div>
+    <h2>This is the info page</h2>
+    
+    
+    <div>
+        <h3>Earth:</h3>
+        <p>Time on earth is: @DateTime.Now.ToString("r")</p>
+        @{
+            double millis = @DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            double jdUt = Utilities.GetJulianDateUt(millis);
+            double jdTt = Utilities.GetJulianDateTt(jdUt);
+            double j2000 = Utilities.GetJ2000(jdTt);
+        }
+        <p>Milliseconds since 1 January 1970, 00:00:00 UTC (Unix Epoch): @millis</p>
+        <hr/>
+
+        <p>Julian Date (Unix time): @jdUt.ToString("N4")</p>
+        <p>This is the number of days since the Julian Epoch on 1 January 4713 BC, 12:00:00 UTC</p>
+        <hr/>
+
+        <p>Julian Date (Terrestrial time): @jdTt.ToString("N4")</p>
+        <p> This is the Julian Date converted to terrestrial time</p>
+        <hr/>
+
+        <p>Days since J2000 Epoch: @j2000.ToString("N4")</p>
+        <p>This is a convenient date to use for other calculations, the number of days since 1 January 2000, 12:00:00 UTC</p>
+        <p>The Julian Date (Terrestrial time) on this date was 2,451,545.0, so we can calculate the number of days since this
+            Epoch as JDtt - 2,451,545.0</p>
+        <hr/>
+    </div>
+    
+    <div>
+        <h3>Mars:</h3>
+        <p>Mars Sol date: @Utilities.GetMarsSolDate().ToString("N4")</p>
+        <p>The Mars Sol Date is just the Julian Date (Terrestrial time) on Mars</p>
+        <p>At midnight on 6 January 2000 it was midnight on the Martian prime meridian (4.5 days after J2000),
+            so the starting point for the Mars Sol Date is (Days since J2000 - 4.5)</p>
+        <p>The lengths of Martian days and Earth days are slightly different, so we divide by the ratio between them,
+            which is 1.027491252</p>
+        <p>In order to keep the Mars Sol Date positive starting from 29 December 1873, 12:00:00, we add 44,796 days to the total</p>
+        <p>A slight adjustment is needed since the midnights weren't perfectly aligned. We take away 0.00096</p>
+        <p>MSD = {[(Days since J2000 - 4.5) / 1.027491252] + 44,796 - 0.00096}</p>
+    </div>
+    
+    <div>
+        <h3>Curiosity</h3>
+        <p>Curiosity landed on Mars on 6 August 2012, 05:17:57 UTC</p>
+        <p>Current Curiosity Sol: @Utilities.GetCuriositySols().ToString("N4")</p>
+    </div>
+    
+</div>
