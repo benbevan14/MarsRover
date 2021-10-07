@@ -270,15 +270,16 @@ body {
 }
 
 .nav {
-    background-color:black;
+    background-color: black;
     color: white;
-    text-decoration:none;
-    height:50px;
+    text-decoration: none;
+    height: 50px;
     width: 100%;
-    z-index:1000 ;
+    z-index: 1000;
     text-align: justify;
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
     .nav ul {
         margin: 0;
@@ -291,9 +292,6 @@ body {
 }
 /*Nav Bar CSS end*/
 
-.jumbotron {
-    padding: 8rem 2rem;
-}
 
 .container {
     width: 100%;
@@ -328,5 +326,18 @@ img {
 
 #surmooflipped {
     transform: scaleX(-1);
-    margin-left: 166px;
+    margin-left: 140px;
 }
+
+.jumbotron {
+    padding: 8rem 2rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    transition: box-shadow 500ms;
+}
+
+    .jumbotron:hover {
+        padding: 8rem 2rem;
+        transition: box-shadow 500ms;
+        box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+    }
+
