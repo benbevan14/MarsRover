@@ -30,11 +30,37 @@ namespace MarsRover
             return (j2000 - 4.5) / 1.027491252 + 44796.0 - 0.00096;
         }
 
-        public static double GetCuriositySols()
+        public static double GetRoverSols(DateTime landingDate)
         {
-            DateTime landingDate = new DateTime(2012, 08, 06, 05, 17, 57);
             TimeSpan ts = DateTime.UtcNow - landingDate;
             return ts.TotalSeconds / 88775.244147;
         }
+
+        public static double GetCuriositySols()
+        {
+            return GetRoverSols(new DateTime(2012, 8, 6, 5, 17, 57));
+        }
+
+        public static double GetOpportunitySols()
+        {
+            return GetRoverSols(new DateTime(2004, 1, 25, 5, 5, 0));
+        }
+
+        public static double GetSojournerSols()
+        {
+            return GetRoverSols(new DateTime(1996, 12, 4, 6, 58, 7));
+        }
+
+        public static double GetSpiritSols()
+        {
+            return GetRoverSols(new DateTime(2004, 1, 4, 4, 35, 0));
+        }
+
+        public static double GetPerseverenceSols()
+        {
+            return GetRoverSols(new DateTime(2021, 2, 18, 20, 55, 0));
+        }
+
+
     }
 }
