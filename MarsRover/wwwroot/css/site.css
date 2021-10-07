@@ -199,7 +199,7 @@ body {
     vertical-align: middle;
     position: relative;
     box-shadow: 0 0 1px rgba(0,0,0,0);
-    tranform: translateZ(0);
+    transform: translateZ(0);
     transition-duration: .3s;
     transition-property: transform;
 }
@@ -291,3 +291,42 @@ body {
 }
 /*Nav Bar CSS end*/
 
+.jumbotron {
+    padding: 8rem 2rem;
+}
+
+.container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    margin-left: 40px;
+}
+
+.img-right {
+
+}
+
+
+.navbar {
+    padding: 0px;
+}
+
+#surmooflipped {
+    transform: scaleX(-1);
+    margin-left: 166px;
+}
