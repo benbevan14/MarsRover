@@ -1,9 +1,8 @@
 ﻿<div>
-    <h2>This is the info page</h2>
+    <h2 class="text-center mt-4">Dates and Times information</h2>
     
-    
-    <div>
-        <h3>Earth:</h3>
+    <div class="card-header">
+        <h3 class="card-title">Earth:</h3>
         <p>Time on earth is: @DateTime.Now.ToString("r")</p>
         @{
             double millis = @DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -29,8 +28,8 @@
         <hr/>
     </div>
     
-    <div>
-        <h3>Mars:</h3>
+    <div class="card-header">
+        <h3 class="card-title">Mars:</h3>
         <p>Mars Sol date: @Utilities.GetMarsSolDate().ToString("N4")</p>
         <p>The Mars Sol Date is just the Julian Date (Terrestrial time) on Mars</p>
         <p>At midnight on 6 January 2000 it was midnight on the Martian prime meridian (4.5 days after J2000),
@@ -42,8 +41,8 @@
         <p>MSD = {[(Days since J2000 - 4.5) / 1.027491252] + 44,796 - 0.00096}</p>
     </div>
     
-    <div>
-        <h3>Curiosity</h3>
+    <div class="card-header">
+        <h3 class="card-title">Curiosity:</h3>
         <p>Curiosity landed on Mars on 6 August 2012, 05:17:57 UTC</p>
         <p>Current Curiosity Sol: @Utilities.GetCuriositySols().ToString("N4")</p>
     </div>

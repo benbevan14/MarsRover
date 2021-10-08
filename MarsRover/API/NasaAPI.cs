@@ -16,7 +16,7 @@ namespace MarsRover
 
         public NasaApi()
         {
-            ApiKey = ConfigurationManager.AppSettings["apiKey"];
+            ApiKey = Environment.GetEnvironmentVariable("API_KEY");
             BaseUrl = "https://api.nasa.gov/";
             RestClient = new RestClient(BaseUrl);
         }
