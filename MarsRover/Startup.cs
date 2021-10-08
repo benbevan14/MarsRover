@@ -31,6 +31,7 @@ namespace MarsRover
         {
             if (env.IsDevelopment())
             {
+                DotNetEnv.Env.Load();
                 app.UseDeveloperExceptionPage();
             }
             else
