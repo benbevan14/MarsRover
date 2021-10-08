@@ -152,6 +152,7 @@ body {
     margin-right: 15%;
 }
 
+/*Gallery Page CSS*/
 .searchbar {
     text-align: center;
     padding-bottom: 10px;
@@ -163,14 +164,11 @@ body {
     width: 60%;
     margin-left: 20%;
     border-radius: 5px;
+    
 }
 .calendar-wrapper {
     width: 20%;
     text-align: center;
-}
-#calendarButton {
-    background-color:transparent;
-    border: none;
 }
 
 .hidden {
@@ -181,10 +179,20 @@ body {
     align-items: flex-start;
 }
 
-.calendar-image {
-    width: 75px;
-    height: auto;
+.img-thumbnail {
+    border-color: black;
 }
+.apod-desc {
+    border:2px solid black; 
+}
+/*Gallery Page CSS End*/
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1920px;
+    }
+}
+
 
 /* Nav bar css*/
 .header {
@@ -317,7 +325,7 @@ body {
 img {
     vertical-align: middle;
     border-style: none;
-    margin-left: 40px;
+    /*margin-left: 40px;*/
 }
 
 
