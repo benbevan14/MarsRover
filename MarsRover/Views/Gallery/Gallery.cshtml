@@ -1,69 +1,74 @@
-﻿<!-- Google Roboto Fonts -->
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400|Roboto+Condensed:400|Fjalla+One:400'>
-<!-- Font Awesome CSS -->
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
-
-@model ApodResponse
+﻿@model ApodResponse
 
 <h2>Astronomy Picture of the Day</h2>
 
 <section>
-    <div class="stretched" style="background-color: #000000; color: #FFFFFF; padding: 20px;">
-        <button id="calendarButton">
-            Calendar
-        </button>
-        @{
-                using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "dateForm", @class = "hidden"}))
-                {
-                    <div class="searchbar">
-                        @Html.TextBox("Date", "", new {type = "date", id = "dateInput" })
-                    </div>
+    <div class="gallery-background" style="background-color: #000000; color: #FFFFFF; padding-top: 30px; border-radius: 5px;">
+        <div class="image-row">
+          
+            <img class="gallery-image" src="@Model.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+            <div class="calendar-wrapper">
+                <button id="calendarButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 0 24 24" width="50px" fill="#000000" style="fill:white;"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z" /></svg>
+                </button>
+
+                @{
+                    using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "dateForm", @class = "hidden" }))
+                    {
+
+                        @Html.TextBox("Date", "", new { type = "date", id = "dateInput" })
+
+                    }
                 }
-            }
-        <img class="gallery-image" src="@Model.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+            </div>
+           
 
-<h1>Gallery</h1>
+        </div>
+        
 
-    <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Gallery</h1>
 
-    <hr class="mt-2 mb-5">
 
-    <div class="row text-center text-lg-start">
+        <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Gallery</h1>
 
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-4-912x912@2x.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-1-960x480@2x.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-7-960x957@2x.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/mars.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-9-960x884@2x.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-10-960x811@2x.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-6">
-            <a href="#" class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-6-912x912@2x.jpg" alt="">
-            </a>
+        <hr class="mt-2 mb-5">
+
+        <div class="row text-center text-lg-start">
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-4-912x912@2x.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-1-960x480@2x.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-7-960x957@2x.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/mars.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-9-960x884@2x.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-10-960x811@2x.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-6-912x912@2x.jpg" alt="">
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</section>
