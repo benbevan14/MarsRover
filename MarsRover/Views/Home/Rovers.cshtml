@@ -47,17 +47,9 @@
 
 
 
-
-            <h3>Lifetime</h3>
-            <p>
-                Curiosity was initially launched with a two year mission in mind. In December 2012 its mission was extended indefinitely and as of today
-                it is still operational.<br />
-                Curiosity has been active on Mars for @Utilities.GetCuriositySols() sols since its landing.
-            </p>
-
-
             <h3>More facts</h3>
             <ul>
+                <li>Time active: @Utilities.GetCuriositySols() sols</li>
                 <li>Cost: US$3.2 billion in 2020 dollars</li>
                 <li>Mass: 899 kg</li>
                 <li>Distance driven: 26.37 km (16.39 mi) as of 15 September 2021</li>
@@ -67,14 +59,15 @@
              alt="Self-portrait of the Curiosity Rover"
              class="col-6"/>
     </article>
-    
+
     <article class="card-header row">
         <img src="https://mars.nasa.gov/layout/mars2020/images/PIA23764-RoverNamePlateonMars-web.jpg"
              alt="Perseverance Rover"
-             class="col-6" />
+             class="col-6" 
+             style="object-fit: contain; max-width: 100%; max-height: 100%; width: auto; height: auto;"/>
         <section class="col-6">
             <h2 class="card-title">Perseverance</h2>
-            <hr/>
+            <hr />
             <h3>Mission</h3>
 
             <p>
@@ -100,7 +93,61 @@
 
             <h3>More facts</h3>
             <ul>
+                <li>Time active: @Utilities.GetPerseverenceSols() sols</li>
+                <li>Cost: US$2.75 billion</li>
+                <li>Mass: 1025kg</li>
+                <li>Distance driven: 1.97 km (1.22 mi) as of 16 August 2021</li>
             </ul>
         </section>
+    </article>
+
+    <article class="card-header row">
+        <section class="col-6">
+            <h2 class="card-title">Opportunity</h2>
+            <hr />
+            <h3>Mission</h3>
+
+            <p>
+                Opportunity was launched on 7 July 2003, at 03:18 UTC, and landed on 25 January 2004, at 05:05 UTC.
+                It had a planned 90-sol duration of activity, but managed to stay operational for 5111 sols after landing by continually
+                recharging its systems using solar power, exceeding the inital plan by 14 years, 46 days (in Earth time). Its last contact with
+                NASA was on June 10, 2018, and it was declared dead on February 13, 2019 (rip in pepperonis)
+            </p>
+
+
+
+            <h3>Objectives</h3>
+            <ul>
+                <li>Search for and characterize a variety of rocks and regolith that hold clues to past water activity. 
+                    In particular, samples sought include those that have minerals deposited by water-related processes such as 
+                    precipitation, evaporation, sedimentary cementation or hydrothermal activity.</li>
+                <li>Determine the distribution and composition of minerals, rocks, and regolith surrounding the landing sites</li>
+                <li>Determine what geologic processes have shaped the local terrain and influenced the chemistry.
+                    Such processes could include water or wind erosion, sedimentation, hydrothermal mechanisms, volcanism, and cratering.</li>
+                <li>Perform calibration and validation of surface observations made by Mars Reconnaissance Orbiter instruments. 
+                    This will help determine the accuracy and effectiveness of various instruments that survey Martian geology from orbit.</li>
+                <li>Search for iron-containing minerals, identify and quantify relative amounts of specific mineral types that contain water 
+                    or were formed in water, such as iron-bearing carbonates.</li>
+                <li>Characterize the mineralogy and textures of rocks and regolith and determine the processes that created them.</li>
+                <li>Search for geological clues to the environmental conditions that existed when liquid water was present.</li>
+                <li>Assess whether those environments were conducive to life.</li>
+            </ul>
+
+
+
+            <h3>More facts</h3>
+            <ul>
+                <li>Time active: 5111 sols</li>
+                <li>Time since landing: @Utilities.GetOpportunitySols() sols</li>
+                <li>Cost: US$400 million</li>
+                <li>Mass: 185kg</li>
+                <li>Top speed: 0.18 km/h</li>
+                <li>Distance driven: 45.16 km (28.06 mi)</li>
+            </ul>
+        </section>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/260px-NASA_Mars_Rover.jpg"
+             alt="Perseverance Rover"
+             class="col-6" 
+             style="object-fit: contain; max-width: 100%; max-height: 100%; width: auto; height: auto;"/>
     </article>
 </main>
