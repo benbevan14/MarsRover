@@ -70,14 +70,7 @@ creditsImage.onload = function () {
     context.drawImage(creditsImage, buttonX[3], buttonY[3]);
 }
 
-//start of snake game
-var board_border = 'black';
-var board_background = 'transparent';
-var rover_col = 'lightblue';
-var rover_border = 'darkblue';
-//animation
-var frames = 30;
-var timerId = 0;
+
 
 timerId = setInterval(update, 1000 / frames);
 
@@ -211,17 +204,18 @@ var rover = [
     { x: 100, y: 100 }
 ]
 
+    score = 0;
+    // True if changing direction
+    changing_direction = false;
+    // Horizontal velocity
+    food_x;
+    food_y;
+    dx = 10;
+    // Vertical velocity
+    dy = 0;
+}
 
-var score = 0;
-// True if changing direction
-var changing_direction = false;
-// Horizontal velocity
-var food_x;
-var food_y;
-var dx = 10;
-// Vertical velocity
-var dy = 0;
-
+startingGame();
 
 // Get the canvas element
 var roverboard = document.getElementById("roverboard");
@@ -233,15 +227,7 @@ document.addEventListener("keydown", change_direction);
 
 rock_image = new Image();
 rock_image.src = '../img/ResizedMarsRock.png';
-rock_image.onload = function () {
-    main();
-    gen_food();
-}
 
-
-main();
-gen_food();
-restart_game();
 
 
 // main function called repeatedly to keep the game running
@@ -408,12 +394,9 @@ function start_game() {
 }
 
 function restart_game() {
-
-}
-
     if (has_game_ended() === true) {
-        main();
-        gen_food();
+        startingGame();
+        update();
     }
 }
 
