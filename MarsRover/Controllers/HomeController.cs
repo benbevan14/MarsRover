@@ -36,6 +36,11 @@ namespace MarsRover.Controllers
             return View();
         }
 
+        public IActionResult Rovers()
+        {
+            return View();
+        }
+
         public IActionResult Information()
         {
             return View();
