@@ -1,6 +1,7 @@
 ﻿<div id="score">0</div>
-<div>
-    <canvas id="roverboard" width="400" height="400"></canvas>
+<div id="ccanvasBackground">
+      
+    <canvas id="roverboard" width="300" height="300"></canvas>
 </div>
 <div>
 <button class="startGame" id="buttonRoverGame">Start Game</button>
@@ -8,9 +9,13 @@
 <style>
     #roverboard {
         position: absolute;
-        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    #ccanvasBackground {
+        background-image: url(/img/MarsBackGrounfd.png);
+        width:300px;
+        height:300px;
     }
     #score {
         text-align: center;
@@ -22,4 +27,5 @@
         color: white;
         align-content: center;
     }
+    
 </style>

@@ -27,7 +27,8 @@ $(function () {
 
 //start of snake game
 var board_border = 'black';
-var board_background = "white";
+// var board_background = 'MarsBackGrounfd.png';
+var board_background = 'rgba(0,0,0,0)';
 var rover_col = 'lightblue';
 var rover_border = 'darkblue';
 
@@ -210,3 +211,4 @@ function start_game() {
 function restart_game() {
 
 }
+
