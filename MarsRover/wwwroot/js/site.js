@@ -37,6 +37,7 @@ var rover = [
     { x: 200, y: 200 }
 ]
 
+
 var score = 0;
 // True if changing direction
 var changing_direction = false;
@@ -97,6 +98,9 @@ function clear_board() {
 function drawRover() {
     // Draw each part
     rover.forEach(drawRoverPart);
+    rocks = [
+
+    ]
 }
 
 function drawFood() {
