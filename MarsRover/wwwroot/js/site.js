@@ -19,9 +19,8 @@ $(function () {
     });
 });
 // End of Navbar JS
-
-//start of snake game
-
+//---------------------------------------------START OF MENU ------------------------------------------
+//declaring menu variables 
 var canvas = document.getElementById("myMenu");
 var context = canvas.getContext("2d");
 var width = canvas.getAttribute('width');
@@ -118,7 +117,7 @@ function draw() {
     context.drawImage(instructImage, buttonX[1], buttonY[1]);
     context.drawImage(settingsImage, buttonX[2], buttonY[2]);
     context.drawImage(creditsImage, buttonX[3], buttonY[3]);
-    if (shipVisible == true) {
+    if (shipVisible === true) {
         context.drawImage(shipImage, shipX[0] - (shipSize / 2), shipY[0], shipSize, shipHeight);
         context.drawImage(shipImage, shipX[1] - (shipSize / 2), shipY[1], shipSize, shipHeight);
     }
@@ -147,15 +146,17 @@ function checkPos(mouseEvent) {
             shipVisible = false;
         }
     }
+
+    if (mouseEvent.pageX || mouseEvent.pageY === 0) {
+        mouseX = mouseEvent.pageX - this.offsetLeft;
+        mouseY = mouseEvent.pageY - this.offsetTop;
+    } else if (mouseEvent.offsetX || mouseEvent.offsetY === 0) {
+        mouseX = mouseEvent.offsetX;
+        mouseY = mouseEvent.offsetY;
+    }
 }
 
-if (mouseEvent.pageX || mouseEvent.pageY == 0) {
-    mouseX = mouseEvent.pageX - this.offsetLeft;
-    mouseY = mouseEvent.pageY - this.offsetTop;
-} else if (mouseEvent.offsetX || mouseEvent.offsetY == 0) {
-    mouseX = mouseEvent.offsetX;
-    mouseY = mouseEvent.offsetY;
-}
+
 //draw the ship
 var shipX = [0, 0];
 var shipY = [0, 0];
@@ -174,12 +175,17 @@ function checkClick(mouseEvent) {
     for (i = 0; i < buttonX.length; i++) {
         if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
             if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-
+                main();
+                gen_food();
+                restart_game();
             }
         }
     }
 }
 
+function hideCanvas() {
+    canvas.style.display = "none";
+}
 fadeId = setInterval("fadeOut()", 1000 / frames);
 clearInterval(timerId);
 canvas.removeEventListener("mousemove", checkPos);
@@ -201,10 +207,12 @@ function fadeOut() {
 
 //end of menu
 
-
-
 var rover = [
-    { x: 200, y: 200 }
+    { x: 200, y: 200 },
+    { x: 190, y: 200 },
+    { x: 180, y: 200 },
+    { x: 170, y: 200 },
+    { x: 160, y: 200 }
 ]
 
 
@@ -239,11 +247,11 @@ main();
 gen_food();
 restart_game();
 
+
 // main function called repeatedly to keep the game running
 function main() {
 
     if (has_game_ended()) return;
-
     changing_direction = false;
     setTimeout(function onTick() {
         clear_board();
@@ -287,10 +295,11 @@ function drawFood() {
     roverboard_ctx.strokeRect(food_x, food_y, 10, 10);
 }
 // Draw one rover part
-function draw_rover(roverPart) {
-    // Set the colour of the rover part
+function drawRoverPart(roverPart) {
+
+    // Set the color of the rover part
     roverboard_ctx.fillStyle = rover_col;
-    // Set the border colour of the rover part
+    // Set the border color of the rover part
     roverboard_ctx.strokestyle = rover_border;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
     // the part is located
@@ -311,13 +320,13 @@ function draw_rock(rock) {
 }
 function has_game_ended() {
     for (let i = 4; i < rover.length; i++) {
-        if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true
+        if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true;
     }
     var hitLeftWall = rover[0].x < 0;
     var hitRightWall = rover[0].x > roverboard.width - 10;
-    var hitToptWall = rover[0].y < 0;
+    var hitTopWall = rover[0].y < 0;
     var hitBottomWall = rover[0].y > roverboard.height - 10;
-    return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+    return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall;
 }
 
 function random_food(min, max) {
@@ -331,7 +340,7 @@ function gen_food() {
     food_y = random_food(0, roverboard.height - 10);
     // if the new food location is where the snake currently is, generate a new food location
     rover.forEach(function has_rover_eaten_food(part) {
-        var has_eaten = part.x == food_x && part.y == food_y;
+        var has_eaten = part.x === food_x && part.y === food_y;
         if (has_eaten) gen_food();
     });
 }
@@ -404,12 +413,24 @@ function restart_game() {
 }
 
     if (has_game_ended() === true) {
-        Debug.log("dead");
         main();
+        gen_food();
     }
 }
 
 function highestScoreInput() {
+   
+    var highScore;
+
     
 }
 
+function storeHighScore() {
+
+}
+
+function inputName() {
+
+    score;
+    document.getElementById("inputName");
+}
