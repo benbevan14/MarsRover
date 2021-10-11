@@ -97,19 +97,20 @@ function clear_board() {
 // Draw the rover on the canvas
 function drawRover() {
     // Draw each part
-    rover.forEach(drawRoverPart);
-    rocks = [
-
-    ]
+    head = rover[0]; // get first element
+    rocks_array = rover.slice(1); // remove the head from the array
+    draw_rover(head);
+    if (rover.length > 1) {
+        rocks_array.forEach(draw_rock);
+    }
+    
 }
 
 function drawFood() {
     roverboard_ctx.drawImage(rock_image, food_x, food_y);
 }
-
 // Draw one rover part
-function drawRoverPart(roverPart) {
-
+function draw_rover(roverPart) {
     // Set the colour of the rover part
     roverboard_ctx.fillStyle = rover_col;
     // Set the border colour of the rover part
@@ -120,7 +121,17 @@ function drawRoverPart(roverPart) {
     // Draw a border around the snake part
     roverboard_ctx.strokeRect(roverPart.x, roverPart.y, 10, 10);
 }
-
+function draw_rock(rock) {
+    // Set the colour of the rover part
+    roverboard_ctx.fillStyle= 'black';
+    // Set the border colour of the rover part
+    roverboard_ctx.strokestyle = rover_border;
+    // Draw a "filled" rectangle to represent the snake part at the coordinates
+    // the part is located
+    roverboard_ctx.fillRect(rock.x, rock.y, 10, 10);
+    // Draw a border around the snake part
+    roverboard_ctx.strokeRect(rock.x, rock.y, 10, 10);
+}
 function has_game_ended() {
     for (let i = 4; i < rover.length; i++) {
         if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true
