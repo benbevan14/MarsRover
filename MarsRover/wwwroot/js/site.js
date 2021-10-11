@@ -266,15 +266,34 @@ function drawRover() {
     if (rover.length > 1) {
         rocks_array.forEach(draw_rock);
     }
-    
+}
+
+function draw_rover(roverPart) {
+    // Set the colour of the rover part
+    roverboard_ctx.fillStyle = rover_col;
+    // Set the border colour of the rover part
+    roverboard_ctx.strokestyle = rover_border;
+    // Draw a "filled" rectangle to represent the snake part at the coordinates
+    // the part is located
+    roverboard_ctx.fillRect(roverPart.x, roverPart.y, 10, 10);
+    // Draw a border around the snake part
+    roverboard_ctx.strokeRect(roverPart.x, roverPart.y, 10, 10);
 }
 
 function drawFood() {
     roverboard_ctx.drawImage(rock_image, food_x, food_y);
-    roverboard_ctx.fillStyle = 'Crimson';
-    roverboard_ctx.strokestyle = 'DarkRed';
-    roverboard_ctx.fillRect(food_x, food_y, 10, 10);
-    roverboard_ctx.strokeRect(food_x, food_y, 10, 10);
+}
+
+function draw_rock(rock) {
+    // Set the colour of the rover part
+    roverboard_ctx.fillStyle = 'black';
+    // Set the border colour of the rover part
+    roverboard_ctx.strokestyle = rover_border;
+    // Draw a "filled" rectangle to represent the snake part at the coordinates
+    // the part is located
+    roverboard_ctx.fillRect(rock.x, rock.y, 10, 10);
+    // Draw a border around the snake part
+    roverboard_ctx.strokeRect(rock.x, rock.y, 10, 10);
 }
 // Draw one rover part
 function draw_rover(roverPart) {
