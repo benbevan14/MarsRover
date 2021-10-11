@@ -1,6 +1,7 @@
 ﻿<div id="score">0</div>
 <div>
-    <canvas id="roverboard" width="400" height="400"></canvas>
+    <img id="backGroundImage" src="~/img/MarsBackGrounfd.png" width="300" height="300"/>
+    <canvas id="roverboard" width="300" height="300"></canvas>
 </div>
 <div>
 <button class="startGame" id="buttonRoverGame">Start Game</button>
@@ -8,7 +9,6 @@
 <style>
     #roverboard {
         position: absolute;
-        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -16,10 +16,16 @@
         text-align: center;
         font-size: 140px;
     }
+    #backGroundImage {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
     .startGame {
         background: black;
         color: white;
         align-content: center;
     }
+    
 </style>

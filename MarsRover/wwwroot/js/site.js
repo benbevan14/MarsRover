@@ -27,16 +27,14 @@ $(function () {
 
 //start of snake game
 var board_border = 'black';
-var board_background = "white";
+var board_background = 'transparent';
 var rover_col = 'lightblue';
 var rover_border = 'darkblue';
 
+
+
 var rover = [
-    { x: 200, y: 200 },
-    { x: 190, y: 200 },
-    { x: 180, y: 200 },
-    { x: 170, y: 200 },
-    { x: 160, y: 200 }
+    { x: 200, y: 200 }
 ]
 
 var score = 0;
@@ -58,8 +56,13 @@ var roverboard_ctx = roverboard.getContext("2d");
 var roverStart = document.getElementById("buttonRoverGame");
 document.addEventListener("keydown", change_direction);
 
-main();
-gen_food();
+rock_image = new Image();
+rock_image.src = '../img/ResizedMarsRock.png';
+rock_image.onload = function () {
+    main();
+    gen_food();
+}
+
 
 
 // main function called repeatedly to keep the game running
@@ -85,7 +88,7 @@ function clear_board() {
     //  Select the colour for the border of the canvas
     roverboard_ctx.strokestyle = board_border;
     // Draw a "filled" rectangle to cover the entire canvas
-    roverboard_ctx.fillRect(0, 0, roverboard.width, roverboard.height);
+    roverboard_ctx.clearRect(0, 0, roverboard.width, roverboard.height);
     // Draw a "border" around the entire canvas
     roverboard_ctx.strokeRect(0, 0, roverboard.width, roverboard.height);
 }
@@ -97,10 +100,7 @@ function drawRover() {
 }
 
 function drawFood() {
-    roverboard_ctx.fillStyle = 'lightgreen';
-    roverboard_ctx.strokestyle = 'darkgreen';
-    roverboard_ctx.fillRect(food_x, food_y, 10, 10);
-    roverboard_ctx.strokeRect(food_x, food_y, 10, 10);
+    roverboard_ctx.drawImage(rock_image, food_x, food_y);
 }
 
 // Draw one rover part
@@ -210,3 +210,4 @@ function start_game() {
 function restart_game() {
 
 }
+
