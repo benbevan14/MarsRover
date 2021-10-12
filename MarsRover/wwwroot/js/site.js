@@ -34,7 +34,7 @@ var rover_border = 'darkblue';
 
 
 var rover = [
-    { x: 200, y: 200 }
+    { x: 100, y: 100 }
 ]
 
 
@@ -112,7 +112,11 @@ function drawFood() {
 // Draw one rover part
 function draw_rover(roverPart) {
     // Set the colour of the rover part
-    roverboard_ctx.fillStyle = rover_col;
+    if (dx === 10 && dy === 0) roverboard_ctx.fillStyle = 'red';
+    else if (dx === -10 && dy === 0) roverboard_ctx.fillStyle = 'green';
+    else if (dx === 0 && dy === 10) roverboard_ctx.fillStyle = 'blue';
+    else if (dx === 0 && dy === -10) roverboard_ctx.fillStyle = 'yellow';
+    //roverboard_ctx.fillStyle = rover_col;
     // Set the border colour of the rover part
     roverboard_ctx.strokestyle = rover_border;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
