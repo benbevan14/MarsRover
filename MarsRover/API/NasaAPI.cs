@@ -51,7 +51,7 @@ namespace MarsRover
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
 
-            return response.Photos != null ? response.Photos.Select(p => p.ImgSrc) : new List<string>();
+            return response != null && response.Photos != null ? response.Photos.Select(p => p.ImgSrc) : new List<string>();
         }
 
         public IEnumerable<string> GetCuriosityCameraPhotoUrls(DateTime earthDate, string camera)

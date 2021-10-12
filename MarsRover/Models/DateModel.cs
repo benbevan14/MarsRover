@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover.Models
 {
-    public class DateViewModel
+    public class DateModel
     {
         public DateTime Date { get; set; }
     }

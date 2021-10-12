@@ -1,40 +1,67 @@
-﻿@model ApodResponse
+﻿@model List<string>
 
 <h2 style="text-align:center; padding-top: 30px">Astronomy Picture of the Day</h2>
 
-<section>
-    <div class="gallery-background" style="background-color: #FFF; color: #FFFFFF; padding-top: 30px; border-radius: 5px;">
-        <div class="image-row">
+<body>
+    <div class="apod-container">
+        <div class="grid-item grid-item-1"></div>
+        <div class="grid-item grid-item-2">
+            @if (ViewBag.apod.url != null && (ViewBag.apod.media_type != "image"))
+            {
+                <iframe width="740" height="416" src="@ViewBag.apod.url" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+            }
+            else
+            {
+                if (ViewBag.apod.url == null)
+                {
+                    <p style="text-align: center;"> Astronomy Picture of the Day isn't available for this date.</p>
+                }
+                else
+                {
+                    <img class="apod-image img-thumbnail" id="apodImage" src="@ViewBag.apod.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+                }
 
-            <img class="gallery-image img-thumbnail" src="@Model.url" alt="Astronomy Picture of the Day isn't available for this date. '" />
+            }
 
-            <div class="calendar-wrapper">
-
+        </div>
+        <div class="grid-item grid-item-3">
+            <div class="calendar-wrapper" style="text-align: center">
                 @{
                     using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "dateForm" }))
                     {
 
-                        @Html.TextBox("Date", "", new { type = "date", id = "dateInput" })
+                        @Html.TextBox("Date", DateTime.Now.ToString("yyyy-MM-dd"), new { type = "date", id = "dateInput" })
 
                     }
                 }
             </div>
+        </div>
+        <div class="grid-item grid-item-4"></div>
+        <div class="grid-item grid-item-5" id="gridItem5">
+            @if (ViewBag.apod.url != null && (ViewBag.apod.media_type != "image"))
+            {
+                <p class="apod-desc-video" id="apodDescVideo" style="background-color: #f6d141; color: rgba(0, 0, 0, 0.6);">
+                    @ViewBag.apod.explanation
+                </p>
+            }
+            else
+            {
+                if (ViewBag.apod.url != null)
+                {
+                    <p class="apod-desc-photo hidden" id="apodDescPhoto" style="background-color: #f6d141; color: rgba(0, 0, 0, 0.6);">
+                        @ViewBag.apod.explanation
+                        <a id="downloadButton" href="@ViewBag.apod.hdurl" download="HD Astronomy Picture of the Day">Download HD</a>
+                    </p>
 
+                }
+            }
 
         </div>
-
+        <div class="grid-item grid-item-6"></div>
     </div>
-
-    <label class="gallery-image apod-desc" style="background-color: #f6d141; color: rgba(0, 0, 0, 0.6); margin-top: 20px;">
-        @Model.explanation
-    </label>
-   
-
-</section>
+</body>
 
 <h1 class="fw-light text-center text-lg-start mt-4 mb-0" style="padding-bottom: 30px;">Gallery</h1>
-
-@*<hr class="mt-2 mb-5">*@
 
 <div class="row text-center text-lg-start" style="padding-left: 30px; padding-right: 30px;">
 

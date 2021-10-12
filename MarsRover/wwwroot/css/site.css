@@ -36,6 +36,12 @@ html {
     }
 }
 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1920px;
+    }
+}
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
@@ -113,7 +119,6 @@ body {
 /*------------JUMBOTRON-----------*/
 
 .bg-cover {
-    background-attachment: static;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -132,7 +137,6 @@ body {
 
 .stretched {
     left: 0;
-    /*position: absolute;*/
     padding: 225px;
     margin: 0;
     background-attachment: fixed;
@@ -153,45 +157,79 @@ body {
 }
 
 /*Gallery Page CSS*/
-.searchbar {
-    text-align: center;
-    padding-bottom: 10px;
-    padding-top: 10px;
+.apod-container {
+    display: grid;
+    grid-template-columns: 590px 740px 590px;
+    grid-template-rows: auto; 
 }
 
-.gallery-image {
+.apod-image {
     display: block;
-    width: 60%;
-    margin-left: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
     border-radius: 5px;
-    
-}
-.calendar-wrapper {
-    width: 20%;
-    text-align: center;
+    max-height: 640px;
+    max-width: 740px;
 }
 
-.hidden {
-    display: none;
+.grid-item-5 {
+    position: relative;
+    margin-bottom: 300px;
 }
-.image-row {
-    display: flex;
-    align-items: flex-start;
+.apod-desc-photo {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    max-height: 150px;
+    overflow-y: auto;
+    transform: translateY(-50%);
+}
+
+.apod-desc-video {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    max-height: 250px;
+    overflow-y: auto;
+    left: 50px;
+    right: 50px;
+}
+
+#downloadButton {
+    display: block;
+    margin-left: 60%;
+    margin-right: auto;
+    background: #fff;
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .img-thumbnail {
     border-color: black;
 }
-.apod-desc {
-    border:2px solid black; 
+
+.hidden {
+    display: none;
 }
 /*Gallery Page CSS End*/
 
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1920px;
-    }
-}
+
 
 
 /* Nav bar css*/
