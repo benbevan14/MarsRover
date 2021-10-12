@@ -396,6 +396,14 @@ window.addEventListener("keydown",
     },
     false);
 
+window.addEventListener("keydown",
+    function(e) {
+        if (["ArrowUp", "ArrowDown"].indexOf(e.code) > -1) {
+            e.preventDefault();
+        }
+    },
+    false);
+
 
 
 // main function called repeatedly to keep the game running
