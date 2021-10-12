@@ -1,7 +1,50 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Gallery Js
+var form = document.getElementById("dateForm")
+var input = document.getElementById("dateInput")
 
-// Write your JavaScript code.
+var apod_image = document.getElementById("apodImage")
+
+var grid_Item5 = document.getElementById("gridItem5")
+
+var apod_desc = document.getElementById("apodDescPhoto")
+
+
+if (apod_image !== null) {
+    if (apod_image.complete) {
+        apod_desc.style.left = (740 - apod_image.width) / 2 + 50 + "px";
+        apod_desc.style.right = (740 - apod_image.width) / 2 + 50 + "px";
+        grid_Item5.style.marginBottom = "125px";
+        apod_desc.classList.remove("hidden");
+    }
+    else
+    {
+        apod_desc.classList.add("hidden");
+        apod_image.addEventListener("load", function () {
+            apod_desc.style.left = (740 - apod_image.width) / 2 + 50 + "px";
+            apod_desc.style.right = (740 - apod_image.width) / 2 + 50 + "px";
+            grid_Item5.style.marginBottom = "125px";
+            apod_desc.classList.remove("hidden");
+        })
+    }
+   
+}
+else {
+    /*var apod_desc = document.getElementById("apodDescPhoto")*/
+
+    if (grid_Item5 !== null) {
+        grid_Item5.style.marginBottom = "300px";
+    }
+
+   /* apod_desc.classList.remove("hidden");*/
+}
+
+if (input !== null) {
+    input.addEventListener("change", function () {
+        form.submit();
+    })
+}
+
+// End of Gallery Js
 
 // NavBar Js
 $(function () {
