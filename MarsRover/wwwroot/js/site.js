@@ -600,3 +600,7 @@ function inputName() {
     score;
     document.getElementById("inputName");
 }
+
+function scoreMenu() {
+
+}
