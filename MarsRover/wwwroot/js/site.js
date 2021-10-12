@@ -575,9 +575,6 @@ function restart_game() {
 }
 
 function highestScoreInput() {
-    
-}
-
     if (has_game_ended() === true) {
         startingGame();
         update();
