@@ -20,9 +20,6 @@ $(function () {
 });
 // End of Navbar JS
 
-
-
-
 //menu stuff ==================================================
 
 // html elements
@@ -406,6 +403,36 @@ function start_game() {
 }
 
 function restart_game() {
+    if (has_game_ended() === true) {
+        Debug.log("dead");
+        main();
+    }
+}
+
+function highestScoreInput() {
+    if (has_game_ended() === true) {
+        startingGame();
+        update();
+    }
+}
+
+function highestScoreInput() {
+   
+    var highScore;
+
+    
+}
+
+function storeHighScore() {
 
 }
 
+function inputName() {
+
+    score;
+    document.getElementById("inputName");
+}
+
+function scoreMenu() {
+
+}
