@@ -19,14 +19,16 @@ $(function () {
     });
 });
 // End of Navbar JS
-//---------------------------------------------START OF MENU ------------------------------------------
-//declaring menu variables 
-var canvas = document.getElementById("myMenu");
-var context = canvas.getContext("2d");
-var width = canvas.getAttribute('width');
-var height = canvas.getAttribute('height');
 
-//Menu Items
+//menu stuff ==================================================
+
+// html elements
+var canvas = document.getElementById("gameMenu");
+var context = canvas.getContext("2d");
+var width = canvas.getAttribute("width");
+var height = canvas.getAttribute("height");
+
+// menu images
 var bgImage = new Image();
 var logoImage = new Image();
 var playImage = new Image();
@@ -35,7 +37,7 @@ var settingsImage = new Image();
 var creditsImage = new Image();
 var shipImage = new Image();
 
-//Image for menu
+// declare sources for images
 shipImage.src = "../img/ship.png";
 bgImage.src = "../img/Background.png";
 logoImage.src = "../img/logo.png";
@@ -44,13 +46,30 @@ instructImage.src = "../img/instructions.png";
 settingsImage.src = "../img/settings.png";
 creditsImage.src = "../img/credits.png";
 
-//button locations
+// button locations
 var buttonX = [192, 110, 149, 160];
 var buttonY = [100, 140, 180, 220];
 var buttonWidth = [96, 260, 182, 160];
 var buttonHeight = [40, 40, 40, 40];
 
-//draws images on top
+// variables for parallax
+var backgroundY = 0;
+var speed = 1;
+
+// ship variables
+var shipX = [0, 0];
+var shipY = [0, 0];
+var shipWidth = 35;
+var shipHeight = 40;
+var shipVisible = false;
+var shipSize = shipWidth;
+var shipRotate = 0;
+
+// mouse position
+var mouseX;
+var mouseY;
+
+// draw menu when the images load
 bgImage.onload = function () {
     context.drawImage(bgImage, 0, 0);
 };
@@ -70,15 +89,60 @@ creditsImage.onload = function () {
     context.drawImage(creditsImage, buttonX[3], buttonY[3]);
 }
 
-//draw the ship
-var shipX = [0, 0];
-var shipY = [0, 0];
-var shipWidth = 35;
-var shipHeight = 40;
+// fade in menu
+var timerId = setInterval(update, 1000 / frames);
 
+// update function
+function update() {
+    clear();
+    backgroundScroll();
+    draw();
+}
+
+function clear() {
+    context.clearRect(0, 0, width, height);
+}
+
+function backgroundScroll() {
+    backgroundY -= speed;
+    if (backgroundY === -1 * height) {
+        backgroundY = 0;
+    }
+    if (shipSize === shipWidth) {
+        shipRotate = -1;
+    }
+    if (shipSize === 0) {
+        shipRotate = 1;
+    }
+    shipSize += shipRotate;
+}
+
+function draw() {
+    context.drawImage(bgImage, 0, backgroundY);
+    context.drawImage(logoImage, 50, -10);
+    context.drawImage(playImage, buttonX[0], buttonY[0]);
+    context.drawImage(instructImage, buttonX[1], buttonY[1]);
+    context.drawImage(settingsImage, buttonX[2], buttonY[2]);
+    context.drawImage(creditsImage, buttonX[3], buttonY[3]);
+    if (shipVisible === true) {
+        context.drawImage(shipImage, shipX[0] - (shipSize / 2), shipY[0], shipSize, shipHeight);
+        context.drawImage(shipImage, shipX[1] - (shipSize / 2), shipY[1], shipSize, shipHeight);
+    }
+}
+
+// add event listener to mouse
+canvas.addEventListener("mousemove", checkPos);
+
+// check mouse position function
 function checkPos(mouseEvent) {
-    mouseX = mouseEvent.pageX - this.offsetLeft;
-    mouseY = mouseEvent.pageY - this.offsetTop;
+
+    if (mouseEvent.pageX || mouseEvent.pageY === 0) {
+        mouseX = mouseEvent.pageX - this.offsetLeft;
+        mouseY = mouseEvent.pageY - this.offsetTop;
+    } else if (mouseEvent.offsetX || mouseEvent.offsetY === 0) {
+        mouseX = mouseEvent.offsetX;
+        mouseY = mouseEvent.offsetY;
+    }
 
     for (var i = 0; i < buttonX.length; i++) {
         if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
@@ -93,132 +157,27 @@ function checkPos(mouseEvent) {
             shipVisible = false;
         }
     }
-
-    if (mouseEvent.pageX || mouseEvent.pageY === 0) {
-        mouseX = mouseEvent.pageX - this.offsetLeft;
-        mouseY = mouseEvent.pageY - this.offsetTop;
-    } else if (mouseEvent.offsetX || mouseEvent.offsetY === 0) {
-        mouseX = mouseEvent.offsetX;
-        mouseY = mouseEvent.offsetY;
-    }
 }
 
-var shipVisible = false;
-var shipSize = shipWidth;
-var shipRotate = 0;
-
-//checking mouse clicks
+// fading
 var fadeId = 0;
 canvas.addEventListener("mouseup", checkClick);
-
-//animation
-var frames = 30;
-var timerId = 0;
-
-timerId = setInterval(update, 1000 / frames);
-
-//update function
-function update() {
-    clear();
-    move();
-    draw();
-}
-// clearing function 
-function clear() {
-    context.clearRect(0, 0, width, height);
-}
-// variables
-var backgroundY = 0;
-var speed = 1;
-
-//background scrolling
-function move() {
-    backgroundY -= speed;
-    if (backgroundY === -1 * height) {
-        backgroundY = 0;
-    }
-    if (shipSize === shipWidth) {
-        shipRotate = -1;
-    }
-    if (shipSize === 0) {
-        shipRotate = 1;
-    }
-    shipSize += shipRotate;
-}
-// draws the images
-function draw() {
-    context.drawImage(bgImage, 0, backgroundY);
-    context.drawImage(logoImage, 50, -10);
-    context.drawImage(playImage, buttonX[0], buttonY[0]);
-    context.drawImage(instructImage, buttonX[1], buttonY[1]);
-    context.drawImage(settingsImage, buttonX[2], buttonY[2]);
-    context.drawImage(creditsImage, buttonX[3], buttonY[3]);
-    if (shipVisible == true) {
-        context.drawImage(shipImage, shipX[0] - (shipSize / 2), shipY[0], shipSize, shipHeight);
-        context.drawImage(shipImage, shipX[1] - (shipSize / 2), shipY[1], shipSize, shipHeight);
-    }
-}
-
-//check mouse pos
-var mouseX;
-var mouseY;
-
-canvas.addEventListener("mousemove", checkPos);
-
-function checkPos(mouseEvent) {
-    mouseX = mouseEvent.pageX - this.offsetLeft;
-    mouseY = mouseEvent.pageY - this.offsetTop;
-
-    for (i = 0; i < buttonX.length; i++) {
-        if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
-            if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-                shipVisible = true;
-                shipX[0] = buttonX[i] - (shipWidth / 2) - 2;
-                shipY[0] = buttonY[i] + 2;
-                shipX[1] = buttonX[i] + buttonWidth[i] + (shipWidth / 2);
-                shipY[1] = buttonY[i] + 2;
-            }
-        } else {
-            shipVisible = false;
-        }
-    }
-}
-
-if (mouseEvent.pageX || mouseEvent.pageY == 0) {
-    mouseX = mouseEvent.pageX - this.offsetLeft;
-    mouseY = mouseEvent.pageY - this.offsetTop;
-} else if (mouseEvent.offsetX || mouseEvent.offsetY == 0) {
-    mouseX = mouseEvent.offsetX;
-    mouseY = mouseEvent.offsetY;
-}
-
+var time = 0.0;
 fadeId = setInterval("fadeOut()", 1000 / frames);
 clearInterval(timerId);
-canvas.removeEventListener("mousemove", checkPos);
-canvas.removeEventListener("mouseup", checkClick);
-var time = 0.0;
 
-//end of menu
 function checkClick(mouseEvent) {
-    for (i = 0; i < buttonX.length; i++) {
+    for (var i = 0; i < buttonX.length; i++) {
         if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
             if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-                main();
-                gen_food();
-                restart_game();
+                if (i === 0) {
+                    main();
+                    genFood();
+                }
             }
         }
     }
 }
-
-function hideCanvas() {
-    canvas.style.display = "none";
-}
-fadeId = setInterval("fadeOut()", 1000 / frames);
-clearInterval(timerId);
-canvas.removeEventListener("mousemove", checkPos);
-canvas.removeEventListener("mouseup", checkClick);
-var time = 0.0;
 
 function fadeOut() {
     context.fillStyle = "rgba(0,0,0, 0.2)";
@@ -233,21 +192,27 @@ function fadeOut() {
     }
 }
 
-// end of menu
+
+
+// end of menu stuff
+
+
+
+
+
+//start of snake game
+var boardBorder = "black";
+var boardBackground = "transparent";
+var roverColor = "lightblue";
+var roverBorder = "darkblue";
 
 var rover = [
     { x: 64, y: 64 }
 ]
 
-//start of snake game
-var board_border = "black";
-var board_background = "transparent";
-var rover_col = "lightblue";
-var rover_border = 'darkblue';
-
 var score = 0;
 // True if changing direction
-var changing_direction = false;
+var changingDirection = false;
 // Horizontal velocity
 var food_x;
 var food_y;
@@ -255,28 +220,20 @@ var dx = 16;
 // Vertical velocity
 var dy = 0;
 
-function startingGame() {
-    score = 0;
-    // True if changing direction
-    changing_direction = false;
-    // Horizontal velocity
-    dx = 16;
-    // Vertical velocity
-    dy = 0;
-}
-
-startingGame();
-
 // Get the canvas element
 var roverboard = document.getElementById("roverboard");
 // Return a two dimensional drawing context
-var roverboard_ctx = roverboard.getContext("2d");
+var roverboardCtx = roverboard.getContext("2d");
 // Start game
 var roverStart = document.getElementById("buttonRoverGame");
 document.addEventListener("keydown", change_direction);
 
-rock_image = new Image();
-rock_image.src = '../img/ResizedMarsRock.png';
+rockImage = new Image();
+rockImage.src = "../img/MarsFood.png";
+//document.getElementById("buttonRoverGame").onclick = function() {
+//    main();
+//    genFood();
+//}
 
 window.addEventListener("keydown",
     function(e) {
@@ -288,148 +245,148 @@ window.addEventListener("keydown",
 
 // main function called repeatedly to keep the game running
 function main() {
+    if (hasGameEnded()) return;
 
-    if (has_game_ended()) return;
-    changing_direction = false;
-    setTimeout(function onTick() {
-        clear_board();
-        drawFood();
-        move_rover();
-        drawRover();
-        // Repeat
-        main();
-    }, 100)
+    changingDirection = false;
+    setTimeout(function() {
+            clearBoard();
+            drawFood();
+            moveRover();
+            drawRover();
+            // Repeat
+            main();
+        },
+        100);
 }
 
 // draw a border around the canvas
-function clear_board() {
-    //  Select the colour to fill the drawing
-    roverboard_ctx.fillStyle = board_background;
-    //  Select the colour for the border of the canvas
-    roverboard_ctx.strokestyle = board_border;
+function clearBoard() {
+    //  Select the color to fill the drawing
+    roverboardCtx.fillStyle = boardBackground;
+    //  Select the color for the border of the canvas
+    roverboardCtx.strokestyle = boardBorder;
     // Draw a "filled" rectangle to cover the entire canvas
-    roverboard_ctx.clearRect(0, 0, roverboard.width, roverboard.height);
+    roverboardCtx.clearRect(0, 0, roverboard.width, roverboard.height);
     // Draw a "border" around the entire canvas
-    roverboard_ctx.strokeRect(0, 0, roverboard.width, roverboard.height);
-    roverboard.style.background = "url('../img/MarsBackground.png')";
+    roverboardCtx.strokeRect(0, 0, roverboard.width, roverboard.height);
+    roverboard.style.background = "url('../img/FinalMarsBackground.png')";
 }
 
 // Draw the rover on the canvas
 function drawRover() {
     // Draw each part
-    head = rover[0]; // get first element
-    rocks_array = rover.slice(1); // remove the head from the array
-    draw_rover(head);
+    var head = rover[0]; // get first element
+    var rocksArray = rover.slice(1); // remove the head from the array
+    drawRoverPart(head);
     if (rover.length > 1) {
-        rocks_array.forEach(draw_rock);
+        rocksArray.forEach(drawRock);
     }
 }
 
 function drawFood() {
-    roverboard_ctx.drawImage(rock_image, food_x, food_y);
+    roverboardCtx.drawImage(rockImage, food_x, food_y);
 }
 
 // Draw one rover part
-function draw_rover(roverPart) {
-    // Set the colour of the rover part
-    if (dx === 16 && dy === 0) roverboard_ctx.fillStyle = 'red';
-    else if (dx === -16 && dy === 0) roverboard_ctx.fillStyle = 'green';
-    else if (dx === 0 && dy === 16) roverboard_ctx.fillStyle = 'blue';
-    else if (dx === 0 && dy === -16) roverboard_ctx.fillStyle = 'yellow';
-    // Set the border colour of the rover part
-    roverboard_ctx.strokestyle = rover_border;
+function drawRoverPart(roverPart) {
+    // Set the color of the rover part
+    if (dx === 16 && dy === 0) roverboardCtx.fillStyle = "red";
+    else if (dx === -16 && dy === 0) roverboardCtx.fillStyle = "green";
+    else if (dx === 0 && dy === 16) roverboardCtx.fillStyle = "blue";
+    else if (dx === 0 && dy === -16) roverboardCtx.fillStyle = "yellow";
+    //roverboardCtx.fillStyle = roverColor;
+    // Set the border color of the rover part
+    roverboardCtx.strokestyle = roverBorder;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
     // the part is located
-    roverboard_ctx.fillRect(roverPart.x, roverPart.y, 16, 16);
+    roverboardCtx.fillRect(roverPart.x, roverPart.y, 16, 16);
     // Draw a border around the snake part
-    roverboard_ctx.strokeRect(roverPart.x, roverPart.y, 16, 16);
+    roverboardCtx.strokeRect(roverPart.x, roverPart.y, 16, 16);
 }
-
-function draw_rock(rock) {
-    // Set the colour of the rover part
-    roverboard_ctx.fillStyle= 'black';
-    // Set the border colour of the rover part
-    roverboard_ctx.strokestyle = rover_border;
+function drawRock(rock) {
+    // Set the color of the rover part
+    roverboardCtx.fillStyle= "black";
+    // Set the border color of the rover part
+    roverboardCtx.strokestyle = roverBorder;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
     // the part is located
-    roverboard_ctx.fillRect(rock.x, rock.y, 16, 16);
+    roverboardCtx.fillRect(rock.x, rock.y, 16, 16);
     // Draw a border around the snake part
-    roverboard_ctx.strokeRect(rock.x, rock.y, 16, 16);
+    roverboardCtx.strokeRect(rock.x, rock.y, 16, 16);
 }
-
-function has_game_ended() {
+function hasGameEnded() {
     for (let i = 4; i < rover.length; i++) {
         if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true;
     }
     var hitLeftWall = rover[0].x < 0;
     var hitRightWall = rover[0].x > roverboard.width - 16;
-    var hitToptWall = rover[0].y < 0;
+    var hitTopWall = rover[0].y < 0;
     var hitBottomWall = rover[0].y > roverboard.height - 16;
-    return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+    return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall;
 }
 
-function random_food(min, max) {
+function randomFood(min, max) {
     return Math.round((Math.random() * (max - min) + min) / 16) * 16;
 }
 
-function gen_food() {
+function genFood() {
     // Generate a random number the food x-coordinate
-    food_x = random_food(0, roverboard.width - 16);
+    food_x = randomFood(0, roverboard.width - 16);
     // Generate a random number for the food y-coordinate
-    food_y = random_food(0, roverboard.height - 16);
+    food_y = randomFood(0, roverboard.height - 16);
     // if the new food location is where the snake currently is, generate a new food location
-    rover.forEach(function has_rover_eaten_food(part) {
-        var has_eaten = part.x === food_x && part.y === food_y;
-        if (has_eaten) gen_food();
+    rover.forEach(function(part) {
+        var hasEaten = part.x === food_x && part.y === food_y;
+        if (hasEaten) genFood();
     });
 }
 
 function change_direction(event) {
-    var LEFT_KEY = 37;
-    var RIGHT_KEY = 39;
-    var UP_KEY = 38;
-    var DOWN_KEY = 40;
+    var leftKey = 37;
+    var rightKey = 39;
+    var upKey = 38;
+    var downKey = 40;
 
     // Prevent the snake from reversing
 
-    if (changing_direction) return;
-    changing_direction = true;
+    if (changingDirection) return;
+    changingDirection = true;
     var keyPressed = event.keyCode;
     var goingUp = dy === -16;
     var goingDown = dy === 16;
     var goingRight = dx === 16;
     var goingLeft = dx === -16;
-    if (keyPressed === LEFT_KEY && !goingRight) {
+    if (keyPressed === leftKey && !goingRight) {
         dx = -16;
         dy = 0;
     }
-    if (keyPressed === UP_KEY && !goingDown) {
+    if (keyPressed === upKey && !goingDown) {
         dx = 0;
         dy = -16;
     }
-    if (keyPressed === RIGHT_KEY && !goingLeft) {
+    if (keyPressed === rightKey && !goingLeft) {
         dx = 16;
         dy = 0;
     }
-    if (keyPressed === DOWN_KEY && !goingUp) {
+    if (keyPressed === downKey && !goingUp) {
         dx = 0;
         dy = 16;
     }
 }
 
-function move_rover() {
+function moveRover() {
     // Create the new rover's head
     var head = { x: rover[0].x + dx, y: rover[0].y + dy };
     // Add the new head to the beginning of snake body
     rover.unshift(head);
-    var has_eaten_food = rover[0].x === food_x && rover[0].y === food_y;
-    if (has_eaten_food) {
+    var hasEatenFood = rover[0].x === food_x && rover[0].y === food_y;
+    if (hasEatenFood) {
         // Increase score
         score += 10;
         // Display score on screen
-        document.getElementById('score').innerHTML = score;
+        document.getElementById("score").innerHTML = score;
         // Generate new food location
-        gen_food();
+        genFood();
     } else {
         // Remove the last part of rover body
         rover.pop();
@@ -437,11 +394,9 @@ function move_rover() {
 }
 
 function start_game() {
-
-    if (document.getElementById('buttonRoverGame').clicked === true) {
+    if (document.getElementById("buttonRoverGame").clicked === true) {
         main();
-        gen_food();
-        
+        genFood();
     } else {
         //do nothing
     }
