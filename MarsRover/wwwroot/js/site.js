@@ -26,15 +26,15 @@ $(function () {
 
 
 //start of snake game
-var board_border = 'black';
-var board_background = 'transparent';
-var rover_col = 'lightblue';
+var board_border = "black";
+var board_background = "transparent";
+var rover_col = "lightblue";
 var rover_border = 'darkblue';
 
 
 
 var rover = [
-    { x: 100, y: 100 }
+    { x: 64, y: 64 }
 ]
 
 
@@ -44,7 +44,7 @@ var changing_direction = false;
 // Horizontal velocity
 var food_x;
 var food_y;
-var dx = 10;
+var dx = 16;
 // Vertical velocity
 var dy = 0;
 
@@ -63,6 +63,14 @@ rock_image.onload = function () {
     main();
     gen_food();
 }
+
+window.addEventListener("keydown",
+    function(e) {
+        if (["ArrowUp", "ArrowDown"].indexOf(e.code) > -1) {
+            e.preventDefault();
+        }
+    },
+    false);
 
 
 
@@ -92,6 +100,7 @@ function clear_board() {
     roverboard_ctx.clearRect(0, 0, roverboard.width, roverboard.height);
     // Draw a "border" around the entire canvas
     roverboard_ctx.strokeRect(0, 0, roverboard.width, roverboard.height);
+    roverboard.style.background = "url('../img/MarsBackground.png')";
 }
 
 // Draw the rover on the canvas
@@ -112,18 +121,18 @@ function drawFood() {
 // Draw one rover part
 function draw_rover(roverPart) {
     // Set the colour of the rover part
-    if (dx === 10 && dy === 0) roverboard_ctx.fillStyle = 'red';
-    else if (dx === -10 && dy === 0) roverboard_ctx.fillStyle = 'green';
-    else if (dx === 0 && dy === 10) roverboard_ctx.fillStyle = 'blue';
-    else if (dx === 0 && dy === -10) roverboard_ctx.fillStyle = 'yellow';
+    if (dx === 16 && dy === 0) roverboard_ctx.fillStyle = 'red';
+    else if (dx === -16 && dy === 0) roverboard_ctx.fillStyle = 'green';
+    else if (dx === 0 && dy === 16) roverboard_ctx.fillStyle = 'blue';
+    else if (dx === 0 && dy === -16) roverboard_ctx.fillStyle = 'yellow';
     //roverboard_ctx.fillStyle = rover_col;
     // Set the border colour of the rover part
     roverboard_ctx.strokestyle = rover_border;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
     // the part is located
-    roverboard_ctx.fillRect(roverPart.x, roverPart.y, 10, 10);
+    roverboard_ctx.fillRect(roverPart.x, roverPart.y, 16, 16);
     // Draw a border around the snake part
-    roverboard_ctx.strokeRect(roverPart.x, roverPart.y, 10, 10);
+    roverboard_ctx.strokeRect(roverPart.x, roverPart.y, 16, 16);
 }
 function draw_rock(rock) {
     // Set the colour of the rover part
@@ -132,30 +141,30 @@ function draw_rock(rock) {
     roverboard_ctx.strokestyle = rover_border;
     // Draw a "filled" rectangle to represent the snake part at the coordinates
     // the part is located
-    roverboard_ctx.fillRect(rock.x, rock.y, 10, 10);
+    roverboard_ctx.fillRect(rock.x, rock.y, 16, 16);
     // Draw a border around the snake part
-    roverboard_ctx.strokeRect(rock.x, rock.y, 10, 10);
+    roverboard_ctx.strokeRect(rock.x, rock.y, 16, 16);
 }
 function has_game_ended() {
     for (let i = 4; i < rover.length; i++) {
         if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true
     }
     var hitLeftWall = rover[0].x < 0;
-    var hitRightWall = rover[0].x > roverboard.width - 10;
+    var hitRightWall = rover[0].x > roverboard.width - 16;
     var hitToptWall = rover[0].y < 0;
-    var hitBottomWall = rover[0].y > roverboard.height - 10;
+    var hitBottomWall = rover[0].y > roverboard.height - 16;
     return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
 }
 
 function random_food(min, max) {
-    return Math.round((Math.random() * (max - min) + min) / 10) * 10;
+    return Math.round((Math.random() * (max - min) + min) / 16) * 16;
 }
 
 function gen_food() {
     // Generate a random number the food x-coordinate
-    food_x = random_food(0, roverboard.width - 10);
+    food_x = random_food(0, roverboard.width - 16);
     // Generate a random number for the food y-coordinate
-    food_y = random_food(0, roverboard.height - 10);
+    food_y = random_food(0, roverboard.height - 16);
     // if the new food location is where the snake currently is, generate a new food location
     rover.forEach(function has_rover_eaten_food(part) {
         var has_eaten = part.x == food_x && part.y == food_y;
@@ -174,25 +183,25 @@ function change_direction(event) {
     if (changing_direction) return;
     changing_direction = true;
     var keyPressed = event.keyCode;
-    var goingUp = dy === -10;
-    var goingDown = dy === 10;
-    var goingRight = dx === 10;
-    var goingLeft = dx === -10;
+    var goingUp = dy === -16;
+    var goingDown = dy === 16;
+    var goingRight = dx === 16;
+    var goingLeft = dx === -16;
     if (keyPressed === LEFT_KEY && !goingRight) {
-        dx = -10;
+        dx = -16;
         dy = 0;
     }
     if (keyPressed === UP_KEY && !goingDown) {
         dx = 0;
-        dy = -10;
+        dy = -16;
     }
     if (keyPressed === RIGHT_KEY && !goingLeft) {
-        dx = 10;
+        dx = 16;
         dy = 0;
     }
     if (keyPressed === DOWN_KEY && !goingUp) {
         dx = 0;
-        dy = 10;
+        dy = 16;
     }
 }
 

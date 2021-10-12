@@ -1,31 +1,23 @@
 ﻿<div id="score">0</div>
-<div>
-    <img id="backGroundImage" src="~/img/MarsBackGrounfd.png" width="300" height="300"/>
-    <canvas id="roverboard" width="300" height="300"></canvas>
+<div class="game-container">
+    <canvas id="roverboard" width="640" height="480"></canvas>
 </div>
 <div>
-<button class="startGame" id="buttonRoverGame">Start Game</button>
-</div>
+    <button class="startGame" id="buttonRoverGame">Start Game</button>
+    </div>
 <style>
-    #roverboard {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .game-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     #score {
         text-align: center;
-        font-size: 140px;
+        font-size: 100px;
     }
-    #backGroundImage {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
     .startGame {
         background: black;
         color: white;
         align-content: center;
     }
-    
 </style>
