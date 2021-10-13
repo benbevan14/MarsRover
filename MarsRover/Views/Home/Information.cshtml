@@ -1,6 +1,12 @@
 ﻿<div>
-    <h2 class="text-center mt-4">Dates and Times information</h2>
     
+    @foreach (var s in Utilities.GetHighScores())
+    {
+        <p>@s.Username : @s.Score</p>
+    }
+
+    <h2 class="text-center mt-4">Dates and Times information</h2>
+
     <div class="card-header">
         <h3 class="card-title">Earth:</h3>
         <p>Time on earth is: @DateTime.Now.ToString("r")</p>
@@ -27,7 +33,7 @@
             Epoch as JDtt - 2,451,545.0</p>
         <hr/>
     </div>
-    
+
     <div class="card-header">
         <h3 class="card-title">Mars:</h3>
         <p>Mars Sol date: @Utilities.GetMarsSolDate().ToString("N4")</p>
@@ -40,11 +46,11 @@
         <p>A slight adjustment is needed since the midnights weren't perfectly aligned. We take away 0.00096</p>
         <p>MSD = {[(Days since J2000 - 4.5) / 1.027491252] + 44,796 - 0.00096}</p>
     </div>
-    
+
     <div class="card-header">
         <h3 class="card-title">Curiosity:</h3>
         <p>Curiosity landed on Mars on 6 August 2012, 05:17:57 UTC</p>
         <p>Current Curiosity Sol: @Utilities.GetCuriositySols().ToString("N4")</p>
     </div>
-    
+
 </div>

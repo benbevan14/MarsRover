@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -59,6 +60,42 @@ namespace MarsRover
         public static double GetPerseverenceSols()
         {
             return GetRoverSols(new DateTime(2021, 2, 18, 20, 55, 0));
+        }
+
+
+        // Stuff for mars rover game
+        public static void AddScore(int score, string username)
+        {
+            string path = @"Scores.txt";
+            if (!File.Exists(path)) return;
+            using StreamWriter sw = File.AppendText(path);
+            sw.WriteLine(score + "," + username);
+        }
+
+        public static IEnumerable<GameScore> GetHighScores()
+        {
+            List<GameScore> scores = new List<GameScore>();
+            string path = @"Scores.txt";
+            //if (!File.Exists(path)) return null;
+            foreach (string s in File.ReadAllLines(path))
+            {
+                var data = s.Split(',');
+                scores.Add(new GameScore(int.Parse(data[0]), data[1]));
+            }
+
+            return scores.OrderByDescending(s => s.Score).Take(5);
+        }
+    }
+
+    public class GameScore
+    {
+        public int Score { get; set; }
+        public string Username { get; set; }
+
+        public GameScore(int score, string username)
+        {
+            Score = score;
+            Username = username;
         }
     }
 }
