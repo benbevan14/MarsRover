@@ -255,7 +255,7 @@ var changingDirection = false;
 // Horizontal velocity
 var food_x;
 var food_y;
-var dx = 64;
+var dx = 16;
 // Vertical velocity
 var dy = 0;
 
@@ -458,7 +458,6 @@ function storeHighScore() {
 }
 
 function inputName() {
-
     score;
     document.getElementById("inputName");
 }
