@@ -271,12 +271,18 @@ var roverboardCtx = roverboard.getContext("2d");
 var roverStart = document.getElementById("buttonRoverGame");
 document.addEventListener("keydown", change_direction);
 
-rockImage = new Image();
+var rockImage = new Image();
 rockImage.src = "../img/MarsFood.png";
-//document.getElementById("buttonRoverGame").onclick = function() {
-//    main();
-//    genFood();
-//}
+var roverRock = new Image();
+roverRock.src = "../img/RoverRock.png";
+var roverN = new Image();
+roverN.src = "../img/GameRoverN.png";
+var roverE = new Image();
+roverE.src = "../img/GameRoverE.png";
+var roverS = new Image();
+roverS.src = "../img/GameRoverS.png";
+var roverW = new Image();
+roverW.src = "../img/GameRoverW.png";
 
 window.addEventListener("keydown",
     function(e) {
@@ -332,31 +338,16 @@ function drawFood() {
 
 // Draw one rover part
 function drawRoverPart(roverPart) {
-    // Set the color of the rover part
-    if (dx === 16 && dy === 0) roverboardCtx.fillStyle = "red";
-    else if (dx === -16 && dy === 0) roverboardCtx.fillStyle = "green";
-    else if (dx === 0 && dy === 16) roverboardCtx.fillStyle = "blue";
-    else if (dx === 0 && dy === -16) roverboardCtx.fillStyle = "yellow";
-    //roverboardCtx.fillStyle = roverColor;
-    // Set the border color of the rover part
-    roverboardCtx.strokestyle = roverBorder;
-    // Draw a "filled" rectangle to represent the snake part at the coordinates
-    // the part is located
-    roverboardCtx.fillRect(roverPart.x, roverPart.y, 16, 16);
-    // Draw a border around the snake part
-    roverboardCtx.strokeRect(roverPart.x, roverPart.y, 16, 16);
+    if (dx === 16 && dy === 0) roverboardCtx.drawImage(roverE, roverPart.x, roverPart.y);
+    else if (dx === -16 && dy === 0) roverboardCtx.drawImage(roverW, roverPart.x, roverPart.y);
+    else if (dx === 0 && dy === 16) roverboardCtx.drawImage(roverN, roverPart.x, roverPart.y);
+    else if (dx === 0 && dy === -16) roverboardCtx.drawImage(roverS, roverPart.x, roverPart.y);
 }
+
 function drawRock(rock) {
-    // Set the color of the rover part
-    roverboardCtx.fillStyle= "black";
-    // Set the border color of the rover part
-    roverboardCtx.strokestyle = roverBorder;
-    // Draw a "filled" rectangle to represent the snake part at the coordinates
-    // the part is located
-    roverboardCtx.fillRect(rock.x, rock.y, 16, 16);
-    // Draw a border around the snake part
-    roverboardCtx.strokeRect(rock.x, rock.y, 16, 16);
+    roverboardCtx.drawImage(roverRock, rock.x, rock.y);
 }
+
 function hasGameEnded() {
     for (let i = 4; i < rover.length; i++) {
         if (rover[i].x === rover[0].x && rover[i].y === rover[0].y) return true;
