@@ -75,19 +75,19 @@ var height = canvas.getAttribute("height");
 var bgImage = new Image();
 var logoImage = new Image();
 var playImage = new Image();
-var instructImage = new Image();
+var titleImage = new Image();
 var settingsImage = new Image();
 var creditsImage = new Image();
-var shipImage = new Image();
+var marsImage = new Image();
 
 // declare sources for images
-shipImage.src = "../img/ship.png";
-bgImage.src = "../img/Background.png";
-logoImage.src = "../img/logo.png";
-playImage.src = "../img/play.png";
-instructImage.src = "../img/instructions.png";
-settingsImage.src = "../img/settings.png";
-creditsImage.src = "../img/credits.png";
+marsImage.src = "../img/pixil-layer-Layer 4.png";
+bgImage.src = "../img/background.png";
+logoImage.src = "../img/MarsRoverTitle.png";
+playImage.src = "../img/Play.png";
+titleImage.src = "../img/MarsRoverTitle.png";
+settingsImage.src = "../img/Settings.png";
+creditsImage.src = "../img/Highscores.png";
 
 // button locations
 var buttonX = [192, 110, 149, 160];
@@ -99,14 +99,14 @@ var buttonHeight = [40, 40, 40, 40];
 var backgroundY = 0;
 var speed = 1;
 
-// ship variables
-var shipX = [0, 0];
-var shipY = [0, 0];
-var shipWidth = 35;
-var shipHeight = 40;
-var shipVisible = false;
-var shipSize = shipWidth;
-var shipRotate = 0;
+// mars variables
+var marsX = [0, 0];
+var marsY = [0, 0];
+var marsWidth = 35;
+var marsHeight = 40;
+var marsVisible = false;
+var marsSize = shipWidth;
+var marsRotate = 0;
 
 // mouse position
 var mouseX;
@@ -122,8 +122,8 @@ logoImage.onload = function () {
 playImage.onload = function () {
     context.drawImage(playImage, buttonX[0], buttonY[0]);
 }
-instructImage.onload = function () {
-    context.drawImage(instructImage, buttonX[1], buttonY[1]);
+titleImage.onload = function () {
+    context.drawImage(titleImage, buttonX[1], buttonY[1]);
 }
 settingsImage.onload = function () {
     context.drawImage(settingsImage, buttonX[2], buttonY[2]);
@@ -151,25 +151,25 @@ function backgroundScroll() {
     if (backgroundY === -1 * height) {
         backgroundY = 0;
     }
-    if (shipSize === shipWidth) {
-        shipRotate = -1;
+    if (marsSize === marsWidth) {
+        marsRotate = -1;
     }
-    if (shipSize === 0) {
-        shipRotate = 1;
+    if (marsSize === 0) {
+        marsRotate = 1;
     }
-    shipSize += shipRotate;
+    marsSize += marsRotate;
 }
 
 function draw() {
     context.drawImage(bgImage, 0, backgroundY);
     context.drawImage(logoImage, 50, -10);
     context.drawImage(playImage, buttonX[0], buttonY[0]);
-    context.drawImage(instructImage, buttonX[1], buttonY[1]);
+    context.drawImage(titleImage, buttonX[1], buttonY[1]);
     context.drawImage(settingsImage, buttonX[2], buttonY[2]);
     context.drawImage(creditsImage, buttonX[3], buttonY[3]);
-    if (shipVisible === true) {
-        context.drawImage(shipImage, shipX[0] - (shipSize / 2), shipY[0], shipSize, shipHeight);
-        context.drawImage(shipImage, shipX[1] - (shipSize / 2), shipY[1], shipSize, shipHeight);
+    if (marsVisible === true) {
+        context.drawImage(marsImage, marsX[0] - (marsSize / 2), marsY[0], marsSize, marsHeight);
+        context.drawImage(marsImage, marsX[1] - (marsSize / 2), marsY[1], marsSize, marsHeight);
     }
 }
 
@@ -190,14 +190,14 @@ function checkPos(mouseEvent) {
     for (var i = 0; i < buttonX.length; i++) {
         if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
             if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-                shipVisible = true;
-                shipX[0] = buttonX[i] - (shipWidth / 2) - 2;
-                shipY[0] = buttonY[i] + 2;
-                shipX[1] = buttonX[i] + buttonWidth[i] + (shipWidth / 2);
-                shipY[1] = buttonY[i] + 2;
+                marsVisible = true;
+                marsX[0] = buttonX[i] - (marsWidth / 2) - 2;
+                marsY[0] = buttonY[i] + 2;
+                marsX[1] = buttonX[i] + buttonWidth[i] + (marsWidth / 2);
+                marsY[1] = buttonY[i] + 2;
             }
         } else {
-            shipVisible = false;
+            marsVisible = false;
         }
     }
 }
