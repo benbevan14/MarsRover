@@ -20,12 +20,5 @@ namespace MarsRover.API.Response
         public DateTime EarthDate { get; set; }
         [JsonProperty("rover")]
         public Rover Rover { get; set; }
-
-        public string url { get; set; }
-
-        public Photo(string url)
-        {
-            this.url = url;
-        }
     }
 }
