@@ -255,7 +255,7 @@ var changingDirection = false;
 // Horizontal velocity
 var food_x;
 var food_y;
-var dx = 16;
+var dx = 64;
 // Vertical velocity
 var dy = 0;
 
