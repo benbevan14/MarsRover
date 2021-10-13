@@ -1,12 +1,12 @@
 ﻿// Gallery Js
-var form = document.getElementById("dateForm")
-var input = document.getElementById("dateInput")
+var form = document.getElementById("dateForm");
+var input = document.getElementById("dateInput");
 
-var apod_image = document.getElementById("apodImage")
+var apod_image = document.getElementById("apodImage");
 
-var grid_Item5 = document.getElementById("gridItem5")
+var grid_Item5 = document.getElementById("gridItem5");
 
-var apod_desc = document.getElementById("apodDescPhoto")
+var apod_desc = document.getElementById("apodDescPhoto");
 
 
 if (apod_image !== null) {
@@ -53,12 +53,13 @@ $(function () {
         var i, stop;
         i = 1;
         stop = 4; //num elements
-        setInterval(function () {
-            if (i > stop) {
-                return;
-            }
-            $('#len' + (i++)).toggleClass('bounce');
-        }, 500)
+        setInterval(function() {
+                if (i > stop) {
+                    return;
+                }
+                $('#len' + (i++)).toggleClass('bounce');
+            },
+            500);
     });
 });
 // End of Navbar JS
@@ -116,7 +117,7 @@ bgImage.onload = function () {
     context.drawImage(bgImage, 0, 0);
 };
 logoImage.onload = function () {
-    context.drawImage(logoImage, 50, -10);
+    context.drawImage(logoImage, 100, -10);
 }
 playImage.onload = function () {
     context.drawImage(playImage, buttonX[0], buttonY[0]);
@@ -158,7 +159,7 @@ function backgroundScroll() {
 
 function draw() {
     context.drawImage(bgImage, 0, backgroundY);
-    context.drawImage(logoImage, 50, -10);
+    context.drawImage(logoImage, 90, 20);
     context.drawImage(playImage, buttonX[0], buttonY[0]);
     context.drawImage(settingsImage, buttonX[1], buttonY[1]);
     context.drawImage(highscoreImage, buttonX[2], buttonY[2]);
@@ -411,7 +412,7 @@ function moveRover() {
     var hasEatenFood = rover[0].x === food_x && rover[0].y === food_y;
     if (hasEatenFood) {
         // Increase score
-        score += 10;
+        score += 1;
         // Display score on screen
         document.getElementById("score").innerHTML = score;
         // Generate new food location
