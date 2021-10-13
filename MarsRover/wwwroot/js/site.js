@@ -81,23 +81,22 @@ var highscoreImage = new Image();
 var marsImage = new Image();
 
 // declare sources for images
-marsImage.src = "../img/pixil-layer-Layer 4.png";
-bgImage.src = "../img/background.png";
+marsImage.src = "../img/marsimage.png";
+bgImage.src = "../img/backgroundNew.png";
 logoImage.src = "../img/MarsRoverTitle.png";
 playImage.src = "../img/Play.png";
-
 settingsImage.src = "../img/Settings.png";
 highscoreImage.src = "../img/Highscores.png";
 
 // button locations
-var buttonX = [192, 110, 149, 160];
-var buttonY = [100, 140, 180, 220];
-var buttonWidth = [172, 444, 347, 437];
-var buttonHeight = [49, 70, 55, 75];
+var buttonX = [225, 140, 95];
+var buttonY = [125, 180, 230];
+var buttonWidth = [172, 347, 437];
+var buttonHeight = [49, 55, 75];
 
 // variables for parallax
 var backgroundY = 0;
-var speed = 1;
+var speed = 0.5;
 
 // mars variables
 var marsX = [0, 0];
@@ -149,10 +148,10 @@ function backgroundScroll() {
         backgroundY = 0;
     }
     if (marsSize === marsWidth) {
-        marsRotate = -1;
+        marsRotate = -0.25;
     }
     if (marsSize === 0) {
-        marsRotate = 1;
+        marsRotate = 0.25;
     }
     marsSize += marsRotate;
 }
