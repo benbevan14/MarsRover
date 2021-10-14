@@ -81,6 +81,9 @@ var settingsImage = new Image();
 var highscoreImage = new Image();
 var marsImage = new Image();
 
+// options
+var menu = true;
+
 // declare sources for images
 marsImage.src = "../img/marsimage.png";
 bgImage.src = "../img/backgroundNew.png";
@@ -136,7 +139,11 @@ var timerId = setInterval(update, 1000 / frames);
 function update() {
     clear();
     backgroundScroll();
-    draw();
+    if (menu) {
+        draw();
+    } else {
+        drawHighscores();
+    }
 }
 
 function clear() {
@@ -167,6 +174,10 @@ function draw() {
         context.drawImage(marsImage, marsX[0] - (marsSize / 2), marsY[0], marsSize, marsHeight);
         context.drawImage(marsImage, marsX[1] - (marsSize / 2), marsY[1], marsSize, marsHeight);
     }
+}
+
+function drawHighscores() {
+    context.drawImage(bgImage, 0, backgroundY);
 }
 
 // add event listener to mouse
@@ -210,8 +221,11 @@ function checkClick(mouseEvent) {
         if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
             if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
                 if (i === 0) {
+                    resetBoard();
                     main();
                     genFood();
+                } else if (i === 2) {
+                    menu = false;
                 }
             }
         }
@@ -247,14 +261,14 @@ var roverBorder = "darkblue";
 
 var rover = [
     { x: 64, y: 64 }
-]
+];
 
 var score = 0;
 // True if changing direction
 var changingDirection = false;
 // Horizontal velocity
-var food_x;
-var food_y;
+var foodX;
+var foodY;
 var dx = 16;
 // Vertical velocity
 var dy = 0;
@@ -263,9 +277,6 @@ var dy = 0;
 var roverboard = document.getElementById("roverboard");
 // Return a two dimensional drawing context
 var roverboardCtx = roverboard.getContext("2d");
-// Start game
-var roverStart = document.getElementById("buttonRoverGame");
-document.addEventListener("keydown", change_direction);
 
 var rockImage = new Image();
 rockImage.src = "../img/MarsFood.png";
@@ -280,6 +291,13 @@ roverS.src = "../img/GameRoverS.png";
 var roverW = new Image();
 roverW.src = "../img/GameRoverW.png";
 
+
+// INPUTS ==============================================================
+
+// Let the game listen for keyboard inputs
+document.addEventListener("keydown", changeDirection);
+
+// to stop the up and down arrows scrolling the page
 window.addEventListener("keydown",
     function(e) {
         if (["ArrowUp", "ArrowDown"].indexOf(e.code) > -1) {
@@ -288,9 +306,18 @@ window.addEventListener("keydown",
     },
     false);
 
+// MAIN ==========================================================================
+
 // main function called repeatedly to keep the game running
 function main() {
-    if (hasGameEnded()) return;
+    if (hasGameEnded()) {
+        console.log("Game has ended");
+        console.log(score);
+        // do stuff to get username 
+        // add high score to Scores.txt
+        
+        return;
+    }
 
     changingDirection = false;
     setTimeout(function() {
@@ -303,6 +330,9 @@ function main() {
         },
         100);
 }
+
+
+// DRAWING =======================================================
 
 // draw a border around the canvas
 function clearBoard() {
@@ -317,23 +347,23 @@ function clearBoard() {
     roverboard.style.background = "url('../img/FinalMarsBackground.png')";
 }
 
+function drawFood() {
+    roverboardCtx.drawImage(rockImage, foodX, foodY);
+}
+
 // Draw the rover on the canvas
 function drawRover() {
     // Draw each part
     var head = rover[0]; // get first element
     var rocksArray = rover.slice(1); // remove the head from the array
-    drawRoverPart(head);
+    drawRoverHead(head);
     if (rover.length > 1) {
         rocksArray.forEach(drawRock);
     }
 }
 
-function drawFood() {
-    roverboardCtx.drawImage(rockImage, food_x, food_y);
-}
-
 // Draw one rover part
-function drawRoverPart(roverPart) {
+function drawRoverHead(roverPart) {
     if (dx === 16 && dy === 0) roverboardCtx.drawImage(roverE, roverPart.x, roverPart.y);
     else if (dx === -16 && dy === 0) roverboardCtx.drawImage(roverW, roverPart.x, roverPart.y);
     else if (dx === 0 && dy === 16) roverboardCtx.drawImage(roverN, roverPart.x, roverPart.y);
@@ -343,6 +373,11 @@ function drawRoverPart(roverPart) {
 function drawRock(rock) {
     roverboardCtx.drawImage(roverRock, rock.x, rock.y);
 }
+
+
+// END DRAWING ====================================================================
+
+
 
 function hasGameEnded() {
     for (let i = 4; i < rover.length; i++) {
@@ -355,30 +390,41 @@ function hasGameEnded() {
     return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall;
 }
 
+function resetBoard() {
+    score = 0;
+    updateScore();
+    changingDirection = false;
+    clearBoard();
+    dx = 16;
+    dy = 0;
+    rover = [
+        { x: 64, y: 64 }
+    ];
+}
+
 function randomFood(min, max) {
     return Math.round((Math.random() * (max - min) + min) / 16) * 16;
 }
 
 function genFood() {
     // Generate a random number the food x-coordinate
-    food_x = randomFood(0, roverboard.width - 16);
+    foodX = randomFood(0, roverboard.width - 16);
     // Generate a random number for the food y-coordinate
-    food_y = randomFood(0, roverboard.height - 16);
+    foodY = randomFood(0, roverboard.height - 16);
     // if the new food location is where the snake currently is, generate a new food location
     rover.forEach(function(part) {
-        var hasEaten = part.x === food_x && part.y === food_y;
+        var hasEaten = part.x === foodX && part.y === foodY;
         if (hasEaten) genFood();
     });
 }
 
-function change_direction(event) {
+function changeDirection(event) {
     var leftKey = 37;
     var rightKey = 39;
     var upKey = 38;
     var downKey = 40;
 
     // Prevent the snake from reversing
-
     if (changingDirection) return;
     changingDirection = true;
     var keyPressed = event.keyCode;
@@ -409,12 +455,12 @@ function moveRover() {
     var head = { x: rover[0].x + dx, y: rover[0].y + dy };
     // Add the new head to the beginning of snake body
     rover.unshift(head);
-    var hasEatenFood = rover[0].x === food_x && rover[0].y === food_y;
+    var hasEatenFood = rover[0].x === foodX && rover[0].y === foodY;
     if (hasEatenFood) {
         // Increase score
         score += 1;
         // Display score on screen
-        document.getElementById("score").innerHTML = score;
+        updateScore();
         // Generate new food location
         genFood();
     } else {
@@ -423,45 +469,6 @@ function moveRover() {
     }
 }
 
-function start_game() {
-    if (document.getElementById("buttonRoverGame").clicked === true) {
-        main();
-        genFood();
-    } else {
-        //do nothing
-    }
-}
-
-function restart_game() {
-    if (has_game_ended() === true) {
-        Debug.log("dead");
-        main();
-    }
-}
-
-function highestScoreInput() {
-    if (has_game_ended() === true) {
-        startingGame();
-        update();
-    }
-}
-
-function highestScoreInput() {
-   
-    var highScore;
-
-    
-}
-
-function storeHighScore() {
-
-}
-
-function inputName() {
-    score;
-    document.getElementById("inputName");
-}
-
-function scoreMenu() {
-
+function updateScore() {
+    document.getElementById("score").innerHTML = score;
 }
