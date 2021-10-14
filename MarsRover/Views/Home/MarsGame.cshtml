@@ -273,6 +273,16 @@
     // main function called repeatedly to keep the game running
     function main() {
         if (hasGameEnded()) {
+
+            // Get the name
+            var name = window.prompt("Please enter your name", "bobby");
+            var text;
+            if (name === null || name === "") {
+                text = "unknown_user";
+            } else {
+                text = name;
+            }
+
             // create a form element with a post method to send to controller
             var form = document.createElement("form");
             form.setAttribute("method", "post");
@@ -290,7 +300,7 @@
             nameField.setAttribute("name", "username");
             scoreField.setAttribute("name", "score");
 
-            nameField.setAttribute("value", "bobby");
+            nameField.setAttribute("value", text);
             scoreField.setAttribute("value", score);
 
             // add the input elements to the form
@@ -315,7 +325,7 @@
             // Repeat
             main();
         },
-            150);
+            120);
     }
 
 
