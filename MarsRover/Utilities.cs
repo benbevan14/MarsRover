@@ -67,7 +67,6 @@ namespace MarsRover
         public static void AddScore(int score, string username)
         {
             string path = @"Scores.txt";
-            if (!File.Exists(path)) return;
             using StreamWriter sw = File.AppendText(path);
             sw.WriteLine(score + "," + username);
         }
@@ -76,7 +75,7 @@ namespace MarsRover
         {
             List<GameScore> scores = new List<GameScore>();
             string path = @"Scores.txt";
-            //if (!File.Exists(path)) return null;
+            if (!File.Exists(path)) return null;
             foreach (string s in File.ReadAllLines(path))
             {
                 var data = s.Split(',');

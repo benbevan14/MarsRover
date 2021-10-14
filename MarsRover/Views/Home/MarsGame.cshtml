@@ -136,10 +136,11 @@
         context.drawImage(bgImage, 0, backgroundY);
         // call get request to return new view with high scores
         // draw high scores
-        for (var i = 0; i < 5; i++) {
+        console.log(scoreObj);
+        scoreObj.forEach(function(obj, i) {
             context.fillStyle = "white";
-            context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 20);
-        }
+            context.fillText(obj['Username'] + " : " + obj["Score"], 100, 100 + i * 20);
+        });
     }
 
     // add event listener to mouse
