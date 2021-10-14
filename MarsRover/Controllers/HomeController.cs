@@ -48,9 +48,18 @@ namespace MarsRover.Controllers
 
         public IActionResult MarsGame()
         {
-            return View();
+            var scores = Utilities.GetHighScores();
+            return View(scores);
         }
-      
+
+        [HttpPost, ActionName("MarsGame")]
+        public IActionResult SubmitScore(int score, string username)
+        {
+            Utilities.AddScore(score, username);
+            var scores = Utilities.GetHighScores();
+            return View("MarsGame", scores);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
