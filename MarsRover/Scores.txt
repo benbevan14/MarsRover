@@ -17,3 +17,8 @@
 32,bobby_rulez
 11,olaf
 4,bobby2
+29,lukesmum
+0,unknown_user
+0,bobby
+1,ben#
+3,unknown_user
