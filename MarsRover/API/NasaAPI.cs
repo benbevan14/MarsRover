@@ -37,7 +37,6 @@ namespace MarsRover
             request.AddParameter("date", dateString);
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
-            Console.WriteLine(response);
             return response;
         }
 
