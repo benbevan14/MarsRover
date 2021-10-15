@@ -29,8 +29,14 @@
                 @{
                     using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "dateForm" }))
                     {
-
-                        @Html.TextBox("Date", DateTime.Now.ToString("yyyy-MM-dd"), new { type = "date", id = "dateInput" })
+                        <input id="fhaz" name="fhaz" type="hidden" value="@ViewBag.fhaz" />
+                        <input id="rhaz" name="rhaz" type="hidden" value="@ViewBag.rhaz" />
+                        <input id="navcam" name="navcam" type="hidden" value="@ViewBag.navcam" />
+                        <input id="mast" name="mast" type="hidden" value="@ViewBag.mast" />
+                        <input id="chemcam" name="chemcam" type="hidden" value="@ViewBag.chemcam" />
+                        <input id="mahli" name="mahli" type="hidden" value="@ViewBag.mahli" />
+                        <input id="mardi" name="mardi" type="hidden" value="@ViewBag.mardi" />
+                        @Html.TextBox("Date", (string)ViewBag.date, new { type = "date", id = "dateInput" })
 
                     }
                 }
@@ -59,47 +65,105 @@
         </div>
         <div class="grid-item grid-item-6"></div>
     </div>
+
+    <h1 class="fw-light text-center text-lg-start mt-4 mb-0" style="padding-bottom: 30px;">Gallery</h1>
+    
+    @{
+        using (Html.BeginForm("Gallery", "Gallery", FormMethod.Post, new { id = "filterForm" }))
+        {
+            <input id="date" name="date" type="hidden" value="@ViewBag.date"/>
+            <label class="filter" for="camera">
+                Camera Filter:
+                FHAZ
+                @if (ViewBag.fhaz == "on")
+                {
+                    <input id="fhaz" type="checkbox" name="fhaz" checked value="on" />
+                }
+                else
+                {
+                    <input id="fhaz" type="checkbox" name="fhaz" value="on" />
+                }
+
+                RHAZ
+                @if (ViewBag.rhaz == "on")
+                {
+                    <input id="rhaz" type="checkbox" name="rhaz" checked value="on" />
+                }
+                else
+                {
+                    <input id="rhaz" type="checkbox" name="rhaz" value="on" />
+                }
+
+                NAVCAM
+                @if (ViewBag.navcam == "on")
+                {
+                    <input id="navcam" type="checkbox" name="navcam" checked value="on" />
+                }
+                else
+                {
+                    <input id="navcam" type="checkbox" name="navcam" value="on" />
+                }
+                MAST
+                @if (ViewBag.mast== "on")
+                {
+                    <input id="mast" type="checkbox" name="mast" checked value="on" />
+                }
+                else
+                {
+                    <input id="mast" type="checkbox" name="mast" value="on" />
+                }
+                CHEMCAM
+                @if (ViewBag.chemcam == "on")
+                {
+                    <input id="chemcam" type="checkbox" name="chemcam" checked value="on" />
+                }
+                else
+                {
+                    <input id="chemcam" type="checkbox" name="chemcam" value="on" />
+                }
+                MAHLI
+                @if (ViewBag.mahli == "on")
+                {
+                    <input id="mahli" type="checkbox" name="mahli" checked value="on" />
+                }
+                else
+                {
+                    <input id="mahli" type="checkbox" name="mahli" value="on" />
+                }
+                MARDI
+                @if (ViewBag.mardi == "on")
+                {
+                    <input id="mardi" type="checkbox" name="mardi" checked value="on" />
+                }
+                else
+                {
+                    <input id="mardi" type="checkbox" name="mardi" value="on" />
+                }
+            </label>
+
+        }
+    }
+    
+<div class="row text-center text-lg-start" style="padding-left: 30px; padding-right: 30px;">
+    @if (Model.Count() == 0)
+    {
+        <div class="grid-text">
+
+            <p style="text-align:center;">There are no available rover photos for today</p>
+
+        </div>
+
+    }
+    @foreach (string url in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="#" class="d-block mb-4 h-100">
+                <img name="roverCamImage" class="img-fluid img-thumbnail" src="@url" alt="">
+            </a>
+        </div>
+    }
+</div>
 </body>
 
-<h1 class="fw-light text-center text-lg-start mt-4 mb-0" style="padding-bottom: 30px;">Gallery</h1>
 
-<div class="row text-center text-lg-start" style="padding-left: 30px; padding-right: 30px;">
-
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-4-912x912@2x.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-1-960x480@2x.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-7-960x957@2x.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/mars.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-9-960x884@2x.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-10-960x811@2x.jpg" alt="">
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://www.thisiscolossal.com/wp-content/uploads/2019/06/nasa-6-912x912@2x.jpg" alt="">
-        </a>
-    </div>
-</div>
-    
 

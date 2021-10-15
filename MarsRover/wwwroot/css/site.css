@@ -159,8 +159,8 @@ body {
 /*Gallery Page CSS*/
 .apod-container {
     display: grid;
-    grid-template-columns: 590px 740px 590px;
-    grid-template-rows: auto; 
+    grid-template-columns: 1fr 740px 1fr;
+    grid-template-rows: auto;
 }
 
 .apod-image {
@@ -220,10 +220,19 @@ body {
     margin-top: 10px;
 }
 
+#filterForm {
+    text-align:center;
+}
+
 .img-thumbnail {
     border-color: black;
 }
-
+.grid-text {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
 .hidden {
     display: none;
 }
