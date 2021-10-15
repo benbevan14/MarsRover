@@ -25,7 +25,6 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://www.nasa.gov/centers/goddard/images/content/638831main_globe_east_2048.jpg) ">
                 <div class="container" style="color: white;">
                     <h2 class="display-4">Earth Time</h2>
-                    <p class="lead">This is the Earth time</p>
                     <hr class="my-4">
                     <h5>Your time is @DateTime.Now</h5>
                 </div>
@@ -33,7 +32,6 @@
             <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg)">
                 <div class="container">
                     <h2 class="display-4">Mars Time</h2>
-                    <p class="lead">This is the Mars time</p>
                     <hr class="my-4">
                     <h5>Mars time is @Utilities.GetMarsSolDate() Sols</h5>
                 </div>
@@ -43,7 +41,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://pbs.twimg.com/media/E8WwBVqWEAEtb5d.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Twitter</h2>
-                    <a class="twitter-timeline" data-width="572px" data-height="608px" data-theme="light" href="https://twitter.com/MarsCuriosity?ref_src=twsrc%5Etfw%22%3ETweets"> by MarsCuriosity</a>
+                    <a class="twitter-timeline" data-width="572px" data-height="532px" data-theme="light" href="https://twitter.com/MarsCuriosity?ref_src=twsrc%5Etfw%22%3ETweets"> by MarsCuriosity</a>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
@@ -52,8 +50,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://solarsystem.nasa.gov/system/content_pages/main_images/1057_1057_rover2_768.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Opportunity Rover</h2>
-                    <h3 class="display-4">Amount of Sols</h3>
-                    <p class="lead">This is the time the Opportunity Rover has been on mars.</p>
+                    <p class="lead">Launch date: July 7, 2003</p>
                     <hr class="my-4">
                     <h5>Time since landing: @Utilities.GetOpportunitySols()</h5>
                 </div>
@@ -63,8 +60,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://upload.wikimedia.org/wikipedia/commons/3/3a/Sojourner_on_Mars_PIA01122.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Sojourner Rover</h2>
-                    <h3 class="display-4">Amount of Sols</h3>
-                    <p class="lead">This is the time the Sojourner Rover has been on mars.</p>
+                    <p class="lead">Launch date: December 4, 1996</p>
                     <hr class="my-4">
                     <h5>Time since landing: @Utilities.GetSojournerSols()</h5>
                 </div>
@@ -74,8 +70,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://www.universetoday.com/wp-content/uploads/2008/10/five_years_on_mars-4_10240768.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Spirit Rover</h2>
-                    <h3 class="display-4">Amount of Sols</h3>
-                    <p class="lead">This is the time the Spirit Rover has been on mars.</p>
+                    <p class="lead">Launch date: June 10, 2003</p>
                     <hr class="my-4">
                     <h5>Time since landing: @Utilities.GetSpiritSols()</h5>
                 </div>
@@ -85,8 +80,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://mars.nasa.gov/layout/mars2020/images/home/MarsPerseveranceRover_SampleCollection.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Perseverance Rover</h2>
-                    <h3 class="display-4">Sols for Rover</h3>
-                    <p class="lead">This is the time the Perseverance Rover has been on mars.</p>
+                    <p class="lead">Launch date: July 30, 2020</p>
                     <hr class="my-4">
                     <h5>Time since landing: @Utilities.GetPerseverenceSols()</h5>
                 </div>
@@ -96,8 +90,7 @@
             <div class="jumbotron bg-cover" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(https://ichef.bbci.co.uk/news/976/cpsprodpb/15B2C/production/_116367888_21929_pia22486-web.jpg) ">
                 <div class="container" style="color: white;">
                     <h2>Curiosity Rover</h2>
-                    <h3 class="display-4">Sols for Rover</h3>
-                    <p class="lead">This is the time the Curiosity Rover has been on mars.</p>
+                    <p class="lead">Launch date: November 26, 2011</p>
                     <hr class="my-4">
                     <h5>Time since landing: @Utilities.GetCuriositySols()</h5>
                 </div>
