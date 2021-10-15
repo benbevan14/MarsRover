@@ -137,15 +137,17 @@
         context.drawImage(bgImage, 0, backgroundY);
         // draw menu title
         context.drawImage(logoImage, 90, 20);
-        // call get request to return new view with high scores
         // draw back button
         context.drawImage(backImage, buttonX[3], buttonY[3]);
         // draw high scores
-        console.log(scoreObj);
         scoreObj.forEach(function(obj, i) {
             context.fillStyle = "white";
             context.font = '50px Poppins';
             context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 50);
+        });
+        if (marsVisible === true) {
+            context.drawImage(marsImage, marsX[0] - (marsSize / 2), marsY[0], marsSize, marsHeight);
+            context.drawImage(marsImage, marsX[1] - (marsSize / 2), marsY[1], marsSize, marsHeight);
         }
     }
 
@@ -154,7 +156,6 @@
 
     // check mouse position function
     function checkPos(mouseEvent) {
-
         if (mouseEvent.pageX || mouseEvent.pageY === 0) {
             mouseX = mouseEvent.pageX - this.offsetLeft;
             mouseY = mouseEvent.pageY - this.offsetTop;
@@ -166,11 +167,15 @@
         for (var i = 0; i < buttonX.length; i++) {
             if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
                 if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-                    marsVisible = true;
-                    marsX[0] = buttonX[i] - (marsWidth / 2) - 2;
-                    marsY[0] = buttonY[i] + 2;
-                    marsX[1] = buttonX[i] + buttonWidth[i] + (marsWidth / 2);
-                    marsY[1] = buttonY[i] + 2;
+                    if ((menu && i < 3) || (!menu && i === 3)) {
+                        marsVisible = true;
+                        marsX[0] = buttonX[i] - (marsWidth / 2) - 2;
+                        marsY[0] = buttonY[i] + 2;
+                        marsX[1] = buttonX[i] + buttonWidth[i] + (marsWidth / 2);
+                        marsY[1] = buttonY[i] + 2;
+                    } else {
+                        marsVisible = false;
+                    }
                 }
             } else {
                 marsVisible = false;
@@ -189,12 +194,18 @@
         for (var i = 0; i < buttonX.length; i++) {
             if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
                 if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
-                    if (i === 0) {
-                        resetBoard();
-                        main();
-                        genFood();
-                    } else if (i === 2) {
-                        menu = false;
+                    if (menu) {
+                        if (i === 0) {
+                            resetBoard();
+                            main();
+                            genFood();
+                        } else if (i === 2) {
+                            menu = false;
+                        }
+                    } else {
+                        if (i === 3) {
+                            menu = true;
+                        }
                     }
                 }
             }
