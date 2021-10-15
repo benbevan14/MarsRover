@@ -51,7 +51,7 @@
 
     // button locations
     var buttonX = [225, 140, 95, 50];
-    var buttonY = [125, 180, 230, 350];
+    var buttonY = [125, 180, 235, 390];
     var buttonWidth = [171, 347, 436, 172];
     var buttonHeight = [48, 48, 48, 48];
 
@@ -142,8 +142,8 @@
         // draw high scores
         scoreObj.forEach(function(obj, i) {
             context.fillStyle = "white";
-            context.font = '50px Poppins';
-            context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 50);
+            context.font = '40px Helvetica, sans-serif';
+            context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"],200, 150 + i * 40);
         });
         if (marsVisible === true) {
             context.drawImage(marsImage, marsX[0] - (marsSize / 2), marsY[0], marsSize, marsHeight);
