@@ -141,7 +141,8 @@
         // draw back button
         context.drawImage(backImage, buttonX[3], buttonY[3]);
         // draw high scores
-        for (var i = 0; i < 5; i++) {
+        console.log(scoreObj);
+        scoreObj.forEach(function(obj, i) {
             context.fillStyle = "white";
             context.font = '50px Poppins';
             context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 50);
@@ -279,6 +280,16 @@
     // main function called repeatedly to keep the game running
     function main() {
         if (hasGameEnded()) {
+
+            // Get the name
+            var name = window.prompt("Please enter your name", "bobby");
+            var text;
+            if (name === null || name === "") {
+                text = "unknown_user";
+            } else {
+                text = name;
+            }
+
             // create a form element with a post method to send to controller
             var form = document.createElement("form");
             form.setAttribute("method", "post");
@@ -296,7 +307,7 @@
             nameField.setAttribute("name", "username");
             scoreField.setAttribute("name", "score");
 
-            nameField.setAttribute("value", "bobby");
+            nameField.setAttribute("value", text);
             scoreField.setAttribute("value", score);
 
             // add the input elements to the form
@@ -321,7 +332,7 @@
             // Repeat
             main();
         },
-            150);
+            120);
     }
 
 
