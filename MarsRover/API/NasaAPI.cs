@@ -26,7 +26,6 @@ namespace MarsRover
             var request = new RestRequest("planetary/apod", Method.GET);
             request.AddParameter("api_key", ApiKey);
             var response = RestClient.Execute<ApodResponse>(request).Data;
-
             return response;
         }
 
@@ -38,11 +37,10 @@ namespace MarsRover
             request.AddParameter("date", dateString);
 
             var response = RestClient.Execute<ApodResponse>(request).Data;
-
             return response;
         }
 
-        public IEnumerable<string> GetCuriosityPhotoUrls(DateTime earthDate)
+        public IEnumerable<Photo> GetCuriosityPhotos(DateTime earthDate)
         {
             var request = new RestRequest("mars-photos/api/v1/rovers/curiosity/photos", Method.GET);
             request.AddParameter("api_key", ApiKey);
@@ -51,7 +49,7 @@ namespace MarsRover
 
             var response = RestClient.Execute<PhotoResponse>(request).Data;
 
-            return response != null && response.Photos != null ? response.Photos.Select(p => p.ImgSrc) : new List<string>();
+            return response != null && response.Photos != null ? response.Photos : new List<Photo>();
         }
 
         public IEnumerable<string> GetCuriosityCameraPhotoUrls(DateTime earthDate, string camera)

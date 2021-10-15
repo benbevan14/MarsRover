@@ -1,6 +1,9 @@
 ﻿// Gallery Js
-var form = document.getElementById("dateForm");
-var input = document.getElementById("dateInput");
+var date_form = document.getElementById("dateForm")
+
+var filter_form = document.getElementById("filterForm")
+
+var input = document.getElementById("dateInput")
 
 var apod_image = document.getElementById("apodImage");
 
@@ -8,6 +11,7 @@ var grid_Item5 = document.getElementById("gridItem5");
 
 var apod_desc = document.getElementById("apodDescPhoto");
 
+var rover_cam_images = document.getElementsByName("roverCamImage")
 
 if (apod_image !== null) {
     if (apod_image.complete) {
@@ -29,18 +33,22 @@ if (apod_image !== null) {
    
 }
 else {
-    /*var apod_desc = document.getElementById("apodDescPhoto")*/
-
+   
     if (grid_Item5 !== null) {
         grid_Item5.style.marginBottom = "300px";
     }
 
-   /* apod_desc.classList.remove("hidden");*/
 }
 
 if (input !== null) {
     input.addEventListener("change", function () {
-        form.submit();
+        date_form.submit();
+    })
+}
+
+if (filter_form !== null) {
+    filter_form.addEventListener("change", function () {
+        filter_form.submit();
     })
 }
 
