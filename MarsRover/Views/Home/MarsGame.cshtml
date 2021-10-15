@@ -29,7 +29,7 @@
     var bgImage = new Image();
     var logoImage = new Image();
     var playImage = new Image();
-
+    var backImage = new Image();
     var settingsImage = new Image();
     var highscoreImage = new Image();
     var marsImage = new Image();
@@ -47,12 +47,13 @@
     playImage.src = "../img/Play.png";
     settingsImage.src = "../img/Settings.png";
     highscoreImage.src = "../img/Highscores.png";
+    backImage.src = "../img/back.png";
 
     // button locations
-    var buttonX = [225, 140, 95];
-    var buttonY = [125, 180, 230];
-    var buttonWidth = [172, 347, 437];
-    var buttonHeight = [49, 55, 75];
+    var buttonX = [225, 140, 95, 50];
+    var buttonY = [125, 180, 230, 350];
+    var buttonWidth = [172, 347, 437, 172];
+    var buttonHeight = [49, 55, 75, 48];
 
     // variables for parallax
     var backgroundY = 0;
@@ -134,11 +135,16 @@
 
     function drawHighscores() {
         context.drawImage(bgImage, 0, backgroundY);
+        // draw menu title
+        context.drawImage(logoImage, 90, 20);
         // call get request to return new view with high scores
+        // draw back button
+        context.drawImage(backImage, buttonX[3], buttonY[3]);
         // draw high scores
         for (var i = 0; i < 5; i++) {
             context.fillStyle = "white";
-            context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 20);
+            context.font = '50px Poppins';
+            context.fillText(scoreObj[i]['Username'] + " : " + scoreObj[i]["Score"], 100, 100 + i * 50);
         }
     }
 
