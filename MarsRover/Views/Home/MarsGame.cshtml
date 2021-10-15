@@ -168,11 +168,12 @@
             if (mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]) {
                 if (mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]) {
                     if ((menu && i < 3) || (!menu && i === 3)) {
-                        marsVisible = true;
                         marsX[0] = buttonX[i] - (marsWidth / 2) - 2;
                         marsY[0] = buttonY[i] + 2;
                         marsX[1] = buttonX[i] + buttonWidth[i] + (marsWidth / 2);
                         marsY[1] = buttonY[i] + 2;
+                        marsVisible = true;
+                        break;
                     } else {
                         marsVisible = false;
                     }
@@ -200,10 +201,12 @@
                             main();
                             genFood();
                         } else if (i === 2) {
+                            marsVisible = false;
                             menu = false;
                         }
                     } else {
                         if (i === 3) {
+                            marsVisible = false;
                             menu = true;
                         }
                     }
